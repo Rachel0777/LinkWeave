@@ -3,7 +3,7 @@ extends Node
 # 随机生成uuid
 var uuid_util = preload("res://addon/uuid.gd")
 
-# == tag对应内容，可以复用
+# == tag对应内容，可以复用 == 
 # 生成tag对应的存储位置
 const INSPIRATION_TAG_FILE_PATH = 'user://inspiration_tag.txt'
 var inspiration_tag_config_file = ConfigFile.new()
@@ -54,3 +54,25 @@ func inspiration_tag_erase_from_parent(current_id:String,parent_id):
 	print(parent_data.name)
 	parent_data.children_id.erase(current_id)
 	inspiration_tag_config_file.set_value('inspiration_tag',parent_id,parent_data)
+
+# == memo对应内容 ==
+const INSPIRATION_MEMO_FILE_PATH = 'user://inspiration_memo.txt'
+var inspiration_memo_config_file = ConfigFile.new()
+# 加载memo文档
+func load_inspiration_memo_file():
+	inspiration_memo_config_file.clear()
+	inspiration_memo_config_file.load(INSPIRATION_MEMO_FILE_PATH)
+# 保存tag文档
+func save_inspiration_memo_file():
+	inspiration_memo_config_file.save(INSPIRATION_MEMO_FILE_PATH)
+# 得到所有memo的id
+func get_all_inspiration_memo_keys():
+	load_inspiration_memo_file()
+	return inspiration_memo_config_file.get_section_keys('inspiration_memo')
+func get_inspiration_memo(id:String):
+	return inspiration_memo_config_file.get_value('inspiration_memo',id)
+# 添加memo
+func add_inspiration_memo(memo_data:MemoEntity):
+	# 保存这一条数据
+	inspiration_memo_config_file.set_value('inspiration_memo',memo_data.id,memo_data)
+	# 根据链接再更新，但是目前没做链接，先挖个坑

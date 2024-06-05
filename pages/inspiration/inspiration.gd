@@ -11,9 +11,15 @@ extends Control
 @onready var inspiration_tag_added_error = %inspiration_tag_added_error
 
 # == 灵感存储添加部分代码 ==
+# 这个主要是选择标签
 @onready var popup_menu_tag = %popup_menu_tag_tree
 @onready var popup_tree = %popup_tag_tree
 @onready var button_tag = %tag_add_button_top
+@onready var popup_menu = %tag_change_popup_menu
+# 这个主要是存储的
+@onready var memoEdit = %memo
+# memo添加失败，显示这个label
+@onready var inspiration_memo_added_error = %inspiration_memo_added_error
 
 func _ready():
 	# 下面这是标签的，人物部分可以复用
@@ -22,6 +28,8 @@ func _ready():
 	Signalbus.inspiration_tag_deled.connect(_on_inspiration_tag_added)
 	# 下面的是修改MenuButton的PopUpMenu的，使其TransparentBG=true
 	_apply_script_to_menubuttons(self)
+	# 下面是灵感memo的
+	Signalbus.inspiration_memo_added.connect(_on_inspiration_memo_added)
 	
 # == 标签部分代码 ==
 # 创建树
@@ -130,6 +138,7 @@ func _on_popup_about_to_show(popup_menu):
 			viewport.transparent_bg = true
 
 # ==灵感添加存储部分==
+# 这个其实是tag的部分，但是我不知道人物界面需不需要这样？
 # 点击添加tag
 func _on_inspiration_tag_button_pressed():
 	if not button_tag.visible and not popup_menu_tag.visible:
@@ -142,24 +151,103 @@ func _on_popup_tag_tree_item_selected():
 	var selected_item = popup_tree.get_selected()
 	if selected_item:
 		var tag_id = selected_item.get_metadata(0)
+		# 把这个标签的id存到button_tag里了，之后就可以很方便的通过button_tag存一下
 		button_tag.set_meta('tag_id',tag_id)
 		button_tag.text = '# '+get_tag_full_name(tag_id)
 		popup_menu_tag.hide()
 
 # 获得这个tag的名字，包括其父类的名字
-func get_tag_full_name(tag_id:String):
+func get_tag_full_name(tag_id:String) -> String:
 	var current_tag = GlobalVariables.get_inspiration_tag(tag_id)
-	var tag_name = ''
+	var tag_names = []
 	while current_tag != null:
+		tag_names.append(current_tag.name)
 		current_tag = GlobalVariables.get_inspiration_tag(current_tag.parent_id)
-		tag_name = current_tag.name+'/' +tag_name
-		#if current_tag!=null:
-			#tag_name = current_tag.name+'/' +tag_name
+	var tag_name = ""
+	for i in range(tag_names.size() - 1, -1, -1):
+		if i!=0:
+			tag_name += tag_names[i] + "/"
+	tag_name += tag_names[0]
 	return tag_name
 	
 # 修改或者删除这个tag
 func _on_tag_add_button_top_pressed():
-	var popup_menu = %tag_change_popup_menu
 	if not popup_menu.visible:
 		popup_menu.show()
 
+# 修改灵感录入时的标签，0是修改，1是删除
+func _on_tag_change_popup_menu_id_pressed(id):
+	# 删除
+	if id==1:
+		clear_inspiration_tag()
+	# 修改
+	elif id==0:
+		button_tag.set_meta('tag_id','NULL')
+		button_tag.text = '#'
+		if not popup_menu.visible:
+			popup_menu_tag.show()
+		
+# 清除灵感上面添加的tag
+func clear_inspiration_tag():
+	# 先得把button上的Meta给清掉
+	button_tag.set_meta('tag_id','NULL')
+	button_tag.text = '#'
+	# 之后button和PopUpMenu全部收起来
+	button_tag.hide()
+	popup_menu_tag.hide()
+
+# 关于灵感录入有关的
+# 填写后如果想要一键清除
+func _on_inspiration_cancel_button_pressed():
+	memoEdit.clear()
+	clear_inspiration_tag()
+	inspiration_memo_added_error.hide()
+
+# 填写过后存储
+# 获得MemoEdit中的内容，赋给MemoEntity
+func get_memo_data()->MemoEntity:
+	var memoEn = MemoEntity.new()
+	# uuid 动态生成id
+	memoEn.id = GlobalVariables.uuid_util.v4()
+	memoEn.content = memoEdit.text
+	# 现挖一个坑
+	memoEn.book_id = 'NULL'
+	# 之前的tag存到了button_tag里，现在取出
+	memoEn.tag = button_tag.get_meta('tag_id','NULL')
+	## 获得当前时间
+	#var time = Time.get_time_dict_from_system()
+	#memoEn.date = "%d-%02d-%02d %02d:%02d:%02d" % [time["year"], time["month"], time["day"], time["hour"], time["minute"], time["second"]]
+	#print(memoEn.date)
+	# 链接的linkout和linkin先挖个坑空着
+	
+	return memoEn
+	
+# 确认MemoEdit中确实有内容
+func validate_memo(memo_data:MemoEntity)->bool:
+	# 验证新添加的技能能为空
+	if memo_data.content == '':
+		return false
+	else:
+		return true
+
+# 保存MemoEntity
+func save_memo(memo_data:MemoEntity):
+	GlobalVariables.add_inspiration_memo(memo_data)
+	GlobalVariables.save_inspiration_memo_file()
+
+# 如果memo添加了，调用这个函数
+func _on_inspiration_memo_added(memoEn:MemoEntity):
+	memoEdit.clear()
+
+# 点击存储memo
+func _on_inspiration_add_button_pressed():
+	var memo_data = get_memo_data()
+	if validate_memo(memo_data):
+		save_memo(memo_data)
+		# 发送技能添加成功的信号
+		Signalbus.inspiration_memo_added.emit(memo_data)
+		memoEdit.clear()
+		clear_inspiration_tag()
+		inspiration_memo_added_error.hide()
+	else:
+		inspiration_memo_added_error.show()
