@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://ud5shvanfk22"]
+[gd_scene load_steps=36 format=3 uid="uid://ud5shvanfk22"]
 
 [ext_resource type="Script" path="res://pages/inspiration/inspiration.gd" id="1_vc22h"]
 [ext_resource type="Theme" uid="uid://cbra74d4qris6" path="res://assets/theme/default.tres" id="1_xad1q"]
@@ -33,12 +33,8 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nbm7i"]
 bg_color = Color(0.733333, 0.733333, 0.733333, 1)
-border_width_left = 1
 border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.733333, 0.733333, 0.733333, 1)
-border_blend = true
+border_color = Color(0.733333, 0.733333, 0.733333, 0.313726)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3u1tt"]
 
@@ -119,16 +115,24 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3om8t"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r2sck"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4jxb6"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.733333, 0.733333, 0.733333, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.733333, 0.733333, 0.733333, 0.313726)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qucpw"]
 bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2a0q4"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4m4ut"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f5y74"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_illpe"]
 
@@ -446,6 +450,7 @@ theme = ExtResource("1_xad1q")
 theme_override_colors/background_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
+wrap_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -458,10 +463,6 @@ custom_minimum_size = Vector2(37, 37)
 layout_mode = 2
 tooltip_text = "点击后选择标签"
 theme = ExtResource("1_xad1q")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_jkfi4")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_53twy")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_r2sck")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_d3axy")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/inspiration_tag_button"]
 custom_minimum_size = Vector2(30, 30)
@@ -479,10 +480,6 @@ custom_minimum_size = Vector2(37, 37)
 layout_mode = 2
 tooltip_text = "点击后选择链接"
 theme = ExtResource("1_xad1q")
-theme_override_styles/normal = SubResource("StyleBoxFlat_qucpw")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_2a0q4")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_4m4ut")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_f5y74")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/inspiration_link_button"]
 custom_minimum_size = Vector2(30, 30)
@@ -495,15 +492,26 @@ grow_vertical = 2
 texture = ExtResource("4_khwdh")
 expand_mode = 1
 
-[node name="inspiration_file_button" type="LinkButton" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xad1q")
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxFlat_4jxb6")
+
+[node name="memo_related_file_container" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_constants/separation = 17
+
+[node name="inspiration_file_button" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/memo_related_file_container"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(37, 37)
 layout_mode = 2
 tooltip_text = "点击后选择文件"
 theme = ExtResource("1_xad1q")
-toggle_mode = true
-button_pressed = true
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/inspiration_file_button"]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/memo_related_file_container/inspiration_file_button"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 1
 anchors_preset = 15
@@ -513,6 +521,18 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_n0byc")
 expand_mode = 1
+
+[node name="SelectFileDialog_Inspiration" type="FileDialog" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/memo_related_file_container/inspiration_file_button"]
+unique_name_in_owner = true
+title = "Open a File"
+initial_position = 1
+size = Vector2i(800, 600)
+ok_button_text = "打开"
+file_mode = 0
+access = 2
+root_subfolder = "\\Users\\Rachel"
+show_hidden_files = true
+use_native_dialog = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -594,5 +614,7 @@ size_flags_vertical = 3
 [connection signal="id_pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_tag_container/tag_add_button_top/tag_change_popup_menu" to="." method="_on_tag_change_popup_menu_id_pressed"]
 [connection signal="item_selected" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_tag_container/popup_menu_tag_tree/popup_tag_tree" to="." method="_on_popup_tag_tree_item_selected"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/inspiration_tag_button" to="." method="_on_inspiration_tag_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/memo_related_file_container/inspiration_file_button" to="." method="_on_inspiration_file_button_pressed"]
+[connection signal="file_selected" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/memo_related_file_container/inspiration_file_button/SelectFileDialog_Inspiration" to="." method="_on_select_file_dialog_inspiration_file_selected"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/HBoxContainer/inspiration_cancel_button" to="." method="_on_inspiration_cancel_button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/HBoxContainer/inspiration_add_button" to="." method="_on_inspiration_add_button_pressed"]

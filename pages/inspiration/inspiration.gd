@@ -27,6 +27,11 @@ extends Control
 # 要先把组件给preload一下
 @export var memoPanelScene:PackedScene = preload("res://pages/inspiration/memo_show_panel_container.tscn")
 @onready var memoContainer = %memo_VBcontainer
+# 插入文件
+@onready var related_file_container = %memo_related_file_container
+@onready var related_file_comp_scene = preload("res://components/related_file_components_container.tscn")
+@onready var file_btn = %inspiration_file_button
+@onready var file_list: Array[String]
 
 func _ready():
 	# 下面这是标签的，人物部分可以复用
@@ -34,8 +39,11 @@ func _ready():
 	Signalbus.inspiration_tag_added.connect(_on_inspiration_tag_added)
 	Signalbus.inspiration_tag_deled.connect(_on_inspiration_tag_added)
 	# 下面是灵感memo的
+	# 这个主要是添加memo的
 	Signalbus.inspiration_memo_added.connect(_on_inspiration_memo_added)
 	show_all_memo()
+	# 这个主要是memo关联文件有关的
+	Signalbus.inspiration_related_file_deled.connect(_on_related_file_deled)
 	
 # == 标签部分代码 ==
 # 创建树
@@ -128,6 +136,7 @@ func _on_tag_del_button_pressed():
 		Signalbus.inspiration_tag_deled.emit(tag_del_data)
 
 # ==灵感添加存储部分==
+# ==memo标签有关==
 # 这个其实是tag的部分，但是我不知道人物界面需不需要这样？
 # 点击添加tag
 func _on_inspiration_tag_button_pressed():
@@ -186,12 +195,14 @@ func clear_inspiration_tag():
 	button_tag.hide()
 	popup_menu_tag.hide()
 
-# 关于灵感录入有关的
+# ==灵感录入有关==
 # 填写后如果想要一键清除
 func _on_inspiration_cancel_button_pressed():
 	memoEdit.clear()
 	clear_inspiration_tag()
 	inspiration_memo_added_error.hide()
+	# 把文件也给删除一下
+	clear_inspiration_file()
 
 # 填写过后存储
 # 获得MemoEdit中的内容，赋给MemoEntity
@@ -200,7 +211,7 @@ func get_memo_data()->MemoEntity:
 	# uuid 动态生成id
 	memoEn.id = GlobalVariables.uuid_util.v4()
 	memoEn.content = memoEdit.text
-	# 现挖一个坑
+	# 先挖一个坑
 	memoEn.book_id = 'NULL'
 	# 之前的tag存到了button_tag里，现在取出
 	memoEn.tag = button_tag.get_meta('tag_id','NULL')
@@ -211,6 +222,8 @@ func get_memo_data()->MemoEntity:
 	#print(memoEn.date)
 	# 链接的linkout和linkin先挖个坑空着
 	
+	# 文件
+	memoEn.file_path = file_list
 	return memoEn
 	
 # 确认MemoEdit中确实有内容
@@ -241,6 +254,8 @@ func _on_inspiration_add_button_pressed():
 		clear_inspiration_tag()
 		inspiration_memo_added_error.hide()
 		clear_memo_container(memoContainer)
+		# 删除一下文件，这个比较麻烦一点点
+		clear_inspiration_file()
 		show_all_memo()
 	else:
 		inspiration_memo_added_error.show()
@@ -256,3 +271,32 @@ func show_all_memo():
 		var memoPanel = memoPanelScene.instantiate()
 		memoPanel.memoEn = GlobalVariables.get_inspiration_memo(memo_id)
 		memoContainer.add_child(memoPanel)
+
+# ==关联文件有关==
+# 加入文件，弹出对话框
+func _on_inspiration_file_button_pressed():
+	%SelectFileDialog_Inspiration.show()
+
+# 文件中的信号
+func _on_select_file_dialog_inspiration_file_selected(path):
+	_add_related_file(path)
+	
+# 加入文件后显示
+func _add_related_file(file_path:String):
+	# 先保存文件数据
+	file_list.append(file_path)
+	# 更新UI
+	var relatedFileComp = related_file_comp_scene.instantiate()
+	relatedFileComp.filepath = file_path
+	related_file_container.add_child(relatedFileComp)
+	
+# 删除关联文件
+func _on_related_file_deled(path:String):
+	memoEn.file_path.erase(path)
+
+# 清空一下文件部分
+func clear_inspiration_file():
+	for child in related_file_container.get_children():
+		if child != file_btn:
+			child.queue_free()
+	file_list=[]

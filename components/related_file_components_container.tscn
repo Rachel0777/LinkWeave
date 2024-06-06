@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://dossdyxoabqfa"]
+
+[ext_resource type="Theme" uid="uid://cbra74d4qris6" path="res://assets/theme/default.tres" id="1_43t54"]
+[ext_resource type="Script" path="res://components/related_file_components_container.gd" id="1_auryq"]
+[ext_resource type="StyleBox" uid="uid://cuyprmgnxxsp5" path="res://assets/theme/inspiration_button.tres" id="2_7idfv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_suxhm"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qj8cr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qvt27"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8et1f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8h153"]
+
+[node name="related_file_components_container" type="HBoxContainer"]
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+script = ExtResource("1_auryq")
+
+[node name="file_button" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("1_43t54")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.976471, 0.862745, 0.360784, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = ExtResource("2_7idfv")
+theme_override_styles/hover = ExtResource("2_7idfv")
+theme_override_styles/pressed = ExtResource("2_7idfv")
+theme_override_styles/disabled = ExtResource("2_7idfv")
+theme_override_styles/focus = ExtResource("2_7idfv")
+text = "readme.md"
+alignment = 0
+
+[node name="del_button" type="Button" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.733333, 0.733333, 0.733333, 1)
+theme_override_colors/font_pressed_color = Color(0.843137, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.843137, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.733333, 0.733333, 0.733333, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.843137, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.733333, 0.733333, 0.733333, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxEmpty_suxhm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qj8cr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qvt27")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8et1f")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8h153")
+text = "×"
+
+[connection signal="pressed" from="del_button" to="." method="_on_del_button_pressed"]
