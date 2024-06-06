@@ -71,6 +71,7 @@ theme_override_font_sizes/font_size = 30
 text = "2024-3-20 14:12:53"
 
 [node name="inspiration_inspiration_detail_button" type="MenuButton" parent="VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 37)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -124,3 +125,11 @@ theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
 text = "并不是只有仁慈才会产生与敌人共情，恐惧也会。"
 fit_content = true
+
+[node name="memo_related_file_container" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_constants/separation = 17
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

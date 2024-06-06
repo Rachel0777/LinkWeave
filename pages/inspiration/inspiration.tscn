@@ -149,6 +149,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vc22h")
 memoEn = SubResource("Resource_7rv1f")
+memoPanelScene = null
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -461,6 +462,7 @@ theme_override_constants/separation = 17
 unique_name_in_owner = true
 custom_minimum_size = Vector2(37, 37)
 layout_mode = 2
+size_flags_vertical = 0
 tooltip_text = "点击后选择标签"
 theme = ExtResource("1_xad1q")
 
@@ -478,6 +480,7 @@ expand_mode = 1
 [node name="inspiration_link_button" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(37, 37)
 layout_mode = 2
+size_flags_vertical = 0
 tooltip_text = "点击后选择链接"
 theme = ExtResource("1_xad1q")
 
@@ -553,6 +556,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(77.964, 37)
 layout_mode = 2
 size_flags_horizontal = 10
+size_flags_vertical = 0
 tooltip_text = "点击后清空memo"
 theme = ExtResource("1_xad1q")
 theme_override_styles/normal = SubResource("StyleBoxFlat_qucpw")
@@ -576,6 +580,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(77.964, 37)
 layout_mode = 2
 size_flags_horizontal = 10
+size_flags_vertical = 0
 tooltip_text = "点击后保存memo"
 theme = ExtResource("1_xad1q")
 theme_override_styles/normal = SubResource("StyleBoxFlat_qucpw")

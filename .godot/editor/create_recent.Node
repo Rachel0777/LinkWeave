@@ -1,3 +1,6 @@
+TextureRect
+ScrollContainer
+HScrollBar
 VSeparator
 Button
 TextureButton
@@ -10,6 +13,3 @@ PopupPanel
 Container
 MenuButton
 OptionButton
-LineEdit
-TextureRect
-VBoxContainer

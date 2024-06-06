@@ -11,3 +11,5 @@ signal inspiration_tag_deled(tagEn:TagEntity)
 signal inspiration_memo_added(memoEn:MemoEntity)
 # 定义一个和灵感页面删除关联文件有关的
 signal inspiration_related_file_deled(filepath:String)
+# 定义一个和查看灵感页面有关的
+signal panel_double_clicked(memoEn:MemoEntity)

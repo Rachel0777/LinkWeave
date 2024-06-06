@@ -44,6 +44,8 @@ func _ready():
 	show_all_memo()
 	# 这个主要是memo关联文件有关的
 	Signalbus.inspiration_related_file_deled.connect(_on_related_file_deled)
+	# 查看memo
+	Signalbus.panel_double_clicked.connect(_on_panel_double_clicked)
 	
 # == 标签部分代码 ==
 # 创建树
@@ -285,7 +287,10 @@ func _on_select_file_dialog_inspiration_file_selected(path):
 func _add_related_file(file_path:String):
 	# 先保存文件数据
 	file_list.append(file_path)
-	# 更新UI
+	_add_related_file_ui(file_path)
+
+# 更新UI	
+func _add_related_file_ui(file_path:String):
 	var relatedFileComp = related_file_comp_scene.instantiate()
 	relatedFileComp.filepath = file_path
 	related_file_container.add_child(relatedFileComp)
@@ -300,3 +305,12 @@ func clear_inspiration_file():
 		if child != file_btn:
 			child.queue_free()
 	file_list=[]
+
+# ==灵感页面memo进行一个增删改查==
+# 如果双击panel，则发生查看
+func _on_panel_double_clicked(memoEn:MemoEntity):
+	memoEn.content = memoEdit.text
+	button_tag.text = '# '+get_tag_full_name(tag_id)
+	# 之前的tag存到了button_tag里，现在取出
+	memoEn.tag = button_tag.get_meta('tag_id','NULL')
+	pass
