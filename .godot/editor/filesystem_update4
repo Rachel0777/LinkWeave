@@ -1,7 +1,5 @@
 res://pages/inspiration/inspiration.tscn
 res://assets/theme/default.tres
+res://pages/inspiration/memo_show_panel_container.gd
 res://pages/inspiration/inspiration.gd
-res://global/global_variables.gd
-res://pages/inspiration/inspiration_memo_resource.gd
-res://global/signalbus.gd
-res://components/try.gd
+res://pages/inspiration/memo_show_panel_container.tscn

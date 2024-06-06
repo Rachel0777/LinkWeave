@@ -1,8 +1,9 @@
-[gd_scene load_steps=44 format=3 uid="uid://ud5shvanfk22"]
+[gd_scene load_steps=39 format=3 uid="uid://ud5shvanfk22"]
 
 [ext_resource type="Script" path="res://pages/inspiration/inspiration.gd" id="1_vc22h"]
 [ext_resource type="Theme" uid="uid://cbra74d4qris6" path="res://assets/theme/default.tres" id="1_xad1q"]
 [ext_resource type="Texture2D" uid="uid://cgpplkgp4ywqr" path="res://assets/icons/井号.png" id="2_00mcv"]
+[ext_resource type="Script" path="res://pages/inspiration/inspiration_memo_resource.gd" id="2_cojst"]
 [ext_resource type="Texture2D" uid="uid://bykn1q5iawir5" path="res://assets/icons/加2.png" id="2_fac0p"]
 [ext_resource type="Texture2D" uid="uid://tj55qm8vhwy2" path="res://assets/icons/文件.png" id="3_n0byc"]
 [ext_resource type="Texture2D" uid="uid://bgejivkkk3417" path="res://assets/icons/hash井号.png" id="3_r2aai"]
@@ -11,7 +12,17 @@
 [ext_resource type="Texture2D" uid="uid://me0fm7jrv4dh" path="res://assets/icons/trashcan回收站.png" id="5_22m40"]
 [ext_resource type="Texture2D" uid="uid://0b8rhtxj0cff" path="res://assets/icons/取消框.png" id="5_eidfg"]
 [ext_resource type="FontFile" uid="uid://bqeanl0rvmlbo" path="res://assets/fonts/SourceHanSerif-VF.otf.ttc" id="6_ab4m2"]
-[ext_resource type="Texture2D" uid="uid://d1rxony85lv5x" path="res://assets/icons/三个点.png" id="6_li3qu"]
+
+[sub_resource type="Resource" id="Resource_7rv1f"]
+script = ExtResource("2_cojst")
+id = ""
+content = ""
+book_id = ""
+tag = ""
+date = ""
+linkout = Array[String]([])
+linkin = Array[String]([])
+file_path = Array[String]([])
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lp1k4"]
 content_margin_left = 50.0
@@ -125,23 +136,6 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7lf2r"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uxnhb"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6chvx"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1wjru"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f7tp6"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bitq4"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yahqh"]
-content_margin_left = 2.0
-content_margin_top = 0.0
-content_margin_right = 10.0
-content_margin_bottom = 0.0
-bg_color = Color(0.933333, 0.952941, 0.996078, 1)
-
 [node name="Inspiration" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -150,6 +144,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vc22h")
+memoEn = SubResource("Resource_7rv1f")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -423,7 +418,7 @@ item_1/id = 1
 unique_name_in_owner = true
 transparent_bg = true
 position = Vector2i(454, 210)
-size = Vector2i(200, 200)
+size = Vector2i(250, 200)
 theme = ExtResource("1_xad1q")
 theme_override_styles/panel = SubResource("StyleBoxFlat_1rqp7")
 
@@ -431,7 +426,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_1rqp7")
 unique_name_in_owner = true
 offset_left = 1.0
 offset_top = 1.0
-offset_right = 199.0
+offset_right = 249.0
 offset_bottom = 199.0
 theme_override_colors/font_color = Color(0.631373, 0.631373, 0.631373, 1)
 theme_override_colors/font_selected_color = Color(1, 0.843137, 0.25098, 1)
@@ -586,234 +581,11 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer"]
+[node name="memo_VBcontainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_oef1n")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer2"]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
-layout_mode = 2
-
-[node name="inspiration_date" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer2/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-theme = ExtResource("1_xad1q")
-theme_override_colors/font_color = Color(0.882353, 0.831373, 0.741176, 1)
-theme_override_font_sizes/font_size = 30
-text = "2024-3-20 14:12:53"
-
-[node name="inspiration_inspiration_detail_button" type="MenuButton" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer2/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(40, 37)
-layout_mode = 2
-size_flags_horizontal = 10
-tooltip_text = "点击后修改、删除或复制链接"
-theme = ExtResource("1_xad1q")
-theme_override_fonts/font = ExtResource("6_ab4m2")
-theme_override_font_sizes/font_size = 15
-theme_override_styles/normal = SubResource("StyleBoxEmpty_uxnhb")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_6chvx")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_1wjru")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_f7tp6")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_bitq4")
-item_count = 3
-popup/item_0/text = "编辑"
-popup/item_0/id = 0
-popup/item_1/text = "删除"
-popup/item_1/id = 1
-popup/item_2/text = "复制链接"
-popup/item_2/id = 2
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer2/VBoxContainer/HBoxContainer2/inspiration_inspiration_detail_button"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_li3qu")
-expand_mode = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="inspiration_tag_label" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer2/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_xad1q")
-theme_override_colors/font_color = Color(0.376471, 0.541176, 0.968627, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_yahqh")
-text = "# 读书/她对此感到厌烦"
-
-[node name="inspiration_tag_label2" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer2/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_xad1q")
-theme_override_colors/font_color = Color(0.376471, 0.541176, 0.968627, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_yahqh")
-text = "# 写文"
-
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("6_ab4m2")
-theme_override_font_sizes/normal_font_size = 35
-bbcode_enabled = true
-text = "并不是只有仁慈才会产生与敌人共情，恐惧也会。"
-fit_content = true
-
-[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_oef1n")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer3"]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer3/VBoxContainer"]
-layout_mode = 2
-
-[node name="inspiration_date" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer3/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-theme = ExtResource("1_xad1q")
-theme_override_colors/font_color = Color(0.882353, 0.831373, 0.741176, 1)
-theme_override_font_sizes/font_size = 30
-text = "2024-3-20 14:12:53"
-
-[node name="inspiration_inspiration_detail_button" type="MenuButton" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer3/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(40, 37)
-layout_mode = 2
-size_flags_horizontal = 10
-tooltip_text = "点击后修改、删除或复制链接"
-theme = ExtResource("1_xad1q")
-theme_override_fonts/font = ExtResource("6_ab4m2")
-theme_override_font_sizes/font_size = 15
-theme_override_styles/normal = SubResource("StyleBoxEmpty_uxnhb")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_6chvx")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_1wjru")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_f7tp6")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_bitq4")
-item_count = 3
-popup/item_0/text = "编辑"
-popup/item_0/id = 0
-popup/item_1/text = "删除"
-popup/item_1/id = 1
-popup/item_2/text = "复制链接"
-popup/item_2/id = 2
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer3/VBoxContainer/HBoxContainer2/inspiration_inspiration_detail_button"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_li3qu")
-expand_mode = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer3/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="inspiration_tag_label" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer3/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_xad1q")
-theme_override_colors/font_color = Color(0.376471, 0.541176, 0.968627, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_yahqh")
-text = "# 写文/奇幻"
-
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer3/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("6_ab4m2")
-theme_override_font_sizes/normal_font_size = 35
-bbcode_enabled = true
-text = "“就是说妈祖是中国历代船工、海员、旅客、商人和渔民共同信奉的神祗，相当于是一个职称，她们的数量不止有一个，除了林默娘之外还有郑祖禧、庄静云、林淑贤、莫妹。当中最广为人知的就是林默娘，但不能否认其他妈祖的存在。” "
-fit_content = true
-
-[node name="PanelContainer4" type="PanelContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_oef1n")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer4"]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer4/VBoxContainer"]
-layout_mode = 2
-
-[node name="inspiration_date" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer4/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-theme = ExtResource("1_xad1q")
-theme_override_colors/font_color = Color(0.882353, 0.831373, 0.741176, 1)
-theme_override_font_sizes/font_size = 30
-text = "2024-3-20 14:12:53"
-
-[node name="inspiration_inspiration_detail_button" type="MenuButton" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer4/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(40, 37)
-layout_mode = 2
-size_flags_horizontal = 10
-tooltip_text = "点击后修改、删除或复制链接"
-theme = ExtResource("1_xad1q")
-theme_override_fonts/font = ExtResource("6_ab4m2")
-theme_override_font_sizes/font_size = 15
-theme_override_styles/normal = SubResource("StyleBoxEmpty_uxnhb")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_6chvx")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_1wjru")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_f7tp6")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_bitq4")
-item_count = 3
-popup/item_0/text = "编辑"
-popup/item_0/id = 0
-popup/item_1/text = "删除"
-popup/item_1/id = 1
-popup/item_2/text = "复制链接"
-popup/item_2/id = 2
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer4/VBoxContainer/HBoxContainer2/inspiration_inspiration_detail_button"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_li3qu")
-expand_mode = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer4/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="inspiration_tag_label" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer4/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_xad1q")
-theme_override_colors/font_color = Color(0.376471, 0.541176, 0.968627, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_yahqh")
-text = "# 读书/她对此感到厌烦"
-
-[node name="inspiration_tag_label2" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer4/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_xad1q")
-theme_override_colors/font_color = Color(0.376471, 0.541176, 0.968627, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_yahqh")
-text = "# 写文"
-
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/PanelContainer4/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("6_ab4m2")
-theme_override_font_sizes/normal_font_size = 35
-bbcode_enabled = true
-text = "并不是只有仁慈才会产生与敌人共情，恐惧也会。"
-fit_content = true
 
 [connection signal="item_selected" from="PanelContainer/HBoxContainer/VBoxContainer/PanelContainer2/tag_tree_lucky" to="." method="_on_tag_tree_lucky_item_selected"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/tag_add_button" to="." method="_on_tag_add_button_pressed"]

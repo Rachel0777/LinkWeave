@@ -21,15 +21,21 @@ extends Control
 # memo添加失败，显示这个label
 @onready var inspiration_memo_added_error = %inspiration_memo_added_error
 
+# ==灵感展示部分代码==
+@export_category('memo entity')
+@export var memoEn:MemoEntity
+# 要先把组件给preload一下
+@export var memoPanelScene:PackedScene = preload("res://pages/inspiration/memo_show_panel_container.tscn")
+@onready var memoContainer = %memo_VBcontainer
+
 func _ready():
 	# 下面这是标签的，人物部分可以复用
 	reconstruct_tree(treeWidget)
 	Signalbus.inspiration_tag_added.connect(_on_inspiration_tag_added)
 	Signalbus.inspiration_tag_deled.connect(_on_inspiration_tag_added)
-	# 下面的是修改MenuButton的PopUpMenu的，使其TransparentBG=true
-	_apply_script_to_menubuttons(self)
 	# 下面是灵感memo的
 	Signalbus.inspiration_memo_added.connect(_on_inspiration_memo_added)
+	show_all_memo()
 	
 # == 标签部分代码 ==
 # 创建树
@@ -121,22 +127,6 @@ func _on_tag_del_button_pressed():
 		# 更新当前UI显示
 		Signalbus.inspiration_tag_deled.emit(tag_del_data)
 
-# 下面处理MenuButton的，使其背景透明的
-func _apply_script_to_menubuttons(node):
-	for child in node.get_children():
-		if child is MenuButton:
-			var popup_menu = child.get_popup()
-			if popup_menu:
-				_on_popup_about_to_show(popup_menu)
-		else:
-			_apply_script_to_menubuttons(child)
-
-func _on_popup_about_to_show(popup_menu):
-	if popup_menu:
-		var viewport = popup_menu.get_viewport()
-		if viewport:
-			viewport.transparent_bg = true
-
 # ==灵感添加存储部分==
 # 这个其实是tag的部分，但是我不知道人物界面需不需要这样？
 # 点击添加tag
@@ -215,6 +205,7 @@ func get_memo_data()->MemoEntity:
 	# 之前的tag存到了button_tag里，现在取出
 	memoEn.tag = button_tag.get_meta('tag_id','NULL')
 	## 获得当前时间
+	## 这个也先挖一个坑，等回头date那里把时间弄明白了再回来
 	#var time = Time.get_time_dict_from_system()
 	#memoEn.date = "%d-%02d-%02d %02d:%02d:%02d" % [time["year"], time["month"], time["day"], time["hour"], time["minute"], time["second"]]
 	#print(memoEn.date)
@@ -239,7 +230,7 @@ func save_memo(memo_data:MemoEntity):
 func _on_inspiration_memo_added(memoEn:MemoEntity):
 	memoEdit.clear()
 
-# 点击存储memo
+# 点击存储memo，而且需要更新底下的
 func _on_inspiration_add_button_pressed():
 	var memo_data = get_memo_data()
 	if validate_memo(memo_data):
@@ -249,5 +240,19 @@ func _on_inspiration_add_button_pressed():
 		memoEdit.clear()
 		clear_inspiration_tag()
 		inspiration_memo_added_error.hide()
+		clear_memo_container(memoContainer)
+		show_all_memo()
 	else:
 		inspiration_memo_added_error.show()
+
+# clear一下VBoxontainer
+func clear_memo_container(container):
+	for child in container.get_children():
+		child.queue_free()
+
+# 显示所有memo
+func show_all_memo():
+	for memo_id in GlobalVariables.get_all_inspiration_memo_keys():
+		var memoPanel = memoPanelScene.instantiate()
+		memoPanel.memoEn = GlobalVariables.get_inspiration_memo(memo_id)
+		memoContainer.add_child(memoPanel)

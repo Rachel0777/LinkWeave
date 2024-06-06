@@ -11,3 +11,5 @@ class_name MemoEntity
 @export var linkout: Array[String]
 # 这个memo被别人的memo链接
 @export var linkin: Array[String]
+# memo链接的文件
+@export var file_path: Array[String]
