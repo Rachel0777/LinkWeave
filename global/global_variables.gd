@@ -62,7 +62,7 @@ var inspiration_memo_config_file = ConfigFile.new()
 func load_inspiration_memo_file():
 	inspiration_memo_config_file.clear()
 	inspiration_memo_config_file.load(INSPIRATION_MEMO_FILE_PATH)
-# 保存tag文档
+# 保存memo文档
 func save_inspiration_memo_file():
 	inspiration_memo_config_file.save(INSPIRATION_MEMO_FILE_PATH)
 # 得到所有memo的id
@@ -76,3 +76,8 @@ func add_inspiration_memo(memo_data:MemoEntity):
 	# 保存这一条数据
 	inspiration_memo_config_file.set_value('inspiration_memo',memo_data.id,memo_data)
 	# 根据链接再更新，但是目前没做链接，先挖个坑
+
+# 删除memo
+func del_memo(memo_id:String):
+	inspiration_memo_config_file.erase_section_key('inspiration_memo',memo_id)
+	save_inspiration_memo_file()

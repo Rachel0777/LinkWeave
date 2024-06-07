@@ -16,6 +16,7 @@ func _ready():
 	_set_memo()
 	# 下面的是修改MenuButton的PopUpMenu的，使其TransparentBG=true
 	_apply_script_to_menubuttons(self)
+	init_menu_btn()
 
 # 做一些关于menu_button的初始化
 func init_menu_btn():
@@ -26,15 +27,23 @@ func init_menu_btn():
 func _on_menu_item_clicked(index:int):
 	# 0编辑
 	if index == 0:
-		pass
+		print('编辑')
+		Signalbus.panel_double_clicked.emit(memoEn)
 	# 1删除
 	elif index == 1:
-		pass
+		del_memo()
 	# 2复制链接
 	elif index == 2:
 		pass
 	else:
 		print("PopupMenu index error!")
+
+# 删除
+func del_memo():
+	# UI自动删除
+	self.queue_free()
+	# 从数据中删除
+	GlobalVariables.del_memo(memoEn.id)
 
 # 获得这个tag的名字，包括其父类的名字
 func get_tag_full_name(tag_id:String) -> String:
@@ -95,5 +104,5 @@ func _add_related_file_ui(file_path:String):
 
 # 如果双击panel，则查看内容
 func _on_gui_input(event):
-	if event is InputEventMouseButton and event.doubleclick:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		Signalbus.panel_double_clicked.emit(memoEn)

@@ -1,9 +1,9 @@
-res://pages/inspiration/inspiration.tscn
-res://pages/inspiration/memo_show_panel_container.gd
-res://assets/theme/default.tres
-res://assets/theme/inspiration_button.tres
 res://pages/inspiration/memo_show_panel_container.tscn
+res://assets/theme/default.tres
+res://pages/inspiration/memo_show_panel_container.gd
+res://assets/theme/inspiration_button.tres
 res://pages/inspiration/inspiration.gd
+res://pages/inspiration/inspiration.tscn
 res://components/related_file_components_container.tscn
+res://global/global_variables.gd
 res://components/related_file_components_container.gd
-res://global/signalbus.gd

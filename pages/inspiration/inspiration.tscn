@@ -149,7 +149,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vc22h")
 memoEn = SubResource("Resource_7rv1f")
-memoPanelScene = null
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -462,6 +461,7 @@ theme_override_constants/separation = 17
 unique_name_in_owner = true
 custom_minimum_size = Vector2(37, 37)
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 0
 tooltip_text = "点击后选择标签"
 theme = ExtResource("1_xad1q")
@@ -480,6 +480,7 @@ expand_mode = 1
 [node name="inspiration_link_button" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(37, 37)
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 0
 tooltip_text = "点击后选择链接"
 theme = ExtResource("1_xad1q")
@@ -490,6 +491,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_khwdh")
@@ -497,24 +499,20 @@ expand_mode = 1
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme = ExtResource("1_xad1q")
 theme_override_constants/separation = 0
 theme_override_styles/separator = SubResource("StyleBoxFlat_4jxb6")
 
-[node name="memo_related_file_container" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 2
-theme_override_constants/separation = 17
-
-[node name="inspiration_file_button" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/memo_related_file_container"]
+[node name="inspiration_file_button" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(37, 37)
 layout_mode = 2
+size_flags_vertical = 0
 tooltip_text = "点击后选择文件"
 theme = ExtResource("1_xad1q")
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/memo_related_file_container/inspiration_file_button"]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/inspiration_file_button"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 1
 anchors_preset = 15
@@ -525,7 +523,7 @@ grow_vertical = 2
 texture = ExtResource("3_n0byc")
 expand_mode = 1
 
-[node name="SelectFileDialog_Inspiration" type="FileDialog" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/memo_related_file_container/inspiration_file_button"]
+[node name="SelectFileDialog_Inspiration" type="FileDialog" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/inspiration_file_button"]
 unique_name_in_owner = true
 title = "Open a File"
 initial_position = 1
@@ -537,9 +535,20 @@ root_subfolder = "\\Users\\Rachel"
 show_hidden_files = true
 use_native_dialog = true
 
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+vertical_scroll_mode = 0
+
+[node name="memo_related_file_container" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 17
+
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
+size_flags_vertical = 0
 theme_override_constants/separation = 17
 
 [node name="inspiration_memo_added_error" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
@@ -619,7 +628,7 @@ size_flags_vertical = 3
 [connection signal="id_pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_tag_container/tag_add_button_top/tag_change_popup_menu" to="." method="_on_tag_change_popup_menu_id_pressed"]
 [connection signal="item_selected" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_tag_container/popup_menu_tag_tree/popup_tag_tree" to="." method="_on_popup_tag_tree_item_selected"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/inspiration_tag_button" to="." method="_on_inspiration_tag_button_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/memo_related_file_container/inspiration_file_button" to="." method="_on_inspiration_file_button_pressed"]
-[connection signal="file_selected" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/memo_related_file_container/inspiration_file_button/SelectFileDialog_Inspiration" to="." method="_on_select_file_dialog_inspiration_file_selected"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/inspiration_file_button" to="." method="_on_inspiration_file_button_pressed"]
+[connection signal="file_selected" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/inspiration_file_button/SelectFileDialog_Inspiration" to="." method="_on_select_file_dialog_inspiration_file_selected"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/HBoxContainer/inspiration_cancel_button" to="." method="_on_inspiration_cancel_button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/HBoxContainer/inspiration_add_button" to="." method="_on_inspiration_add_button_pressed"]

@@ -32,6 +32,8 @@ extends Control
 @onready var related_file_comp_scene = preload("res://components/related_file_components_container.tscn")
 @onready var file_btn = %inspiration_file_button
 @onready var file_list: Array[String]
+# 通过这个button存储一下uuid，实际上是标注一下这个memoEn是否已经存在
+@onready var memo_add_btn = %inspiration_add_button
 
 func _ready():
 	# 下面这是标签的，人物部分可以复用
@@ -205,13 +207,19 @@ func _on_inspiration_cancel_button_pressed():
 	inspiration_memo_added_error.hide()
 	# 把文件也给删除一下
 	clear_inspiration_file()
+	memo_add_btn.set_meta('memo_id','NULL')
 
 # 填写过后存储
 # 获得MemoEdit中的内容，赋给MemoEntity
 func get_memo_data()->MemoEntity:
 	var memoEn = MemoEntity.new()
-	# uuid 动态生成id
-	memoEn.id = GlobalVariables.uuid_util.v4()
+	# 如果添加，则uuid 动态生成id，否则直接用原来的
+	var memo_id = memo_add_btn.get_meta('memo_id','NULL')
+	if memo_id not in GlobalVariables.get_all_inspiration_memo_keys():
+		memoEn.id = GlobalVariables.uuid_util.v4()
+	else:
+		memoEn.id = memo_id
+	memo_add_btn.set_meta('memo_id','NULL')
 	memoEn.content = memoEdit.text
 	# 先挖一个坑
 	memoEn.book_id = 'NULL'
@@ -223,7 +231,6 @@ func get_memo_data()->MemoEntity:
 	#memoEn.date = "%d-%02d-%02d %02d:%02d:%02d" % [time["year"], time["month"], time["day"], time["hour"], time["minute"], time["second"]]
 	#print(memoEn.date)
 	# 链接的linkout和linkin先挖个坑空着
-	
 	# 文件
 	memoEn.file_path = file_list
 	return memoEn
@@ -252,6 +259,7 @@ func _on_inspiration_add_button_pressed():
 		save_memo(memo_data)
 		# 发送技能添加成功的信号
 		Signalbus.inspiration_memo_added.emit(memo_data)
+		# 根据id是否
 		memoEdit.clear()
 		clear_inspiration_tag()
 		inspiration_memo_added_error.hide()
@@ -298,6 +306,7 @@ func _add_related_file_ui(file_path:String):
 # 删除关联文件
 func _on_related_file_deled(path:String):
 	memoEn.file_path.erase(path)
+	file_list.erase(path)
 
 # 清空一下文件部分
 func clear_inspiration_file():
@@ -309,8 +318,18 @@ func clear_inspiration_file():
 # ==灵感页面memo进行一个增删改查==
 # 如果双击panel，则发生查看
 func _on_panel_double_clicked(memoEn:MemoEntity):
-	memoEn.content = memoEdit.text
+	# 查看前先清空面板
+	_on_inspiration_cancel_button_pressed()
+	# 显示content
+	memoEdit.text = memoEn.content
+	# 显示button
+	var tag_id = memoEn.tag
 	button_tag.text = '# '+get_tag_full_name(tag_id)
-	# 之前的tag存到了button_tag里，现在取出
-	memoEn.tag = button_tag.get_meta('tag_id','NULL')
-	pass
+	button_tag.set_meta('tag_id',tag_id)
+	button_tag.show()
+	# 显示file
+	var file_list1 = memoEn.file_path
+	for file in file_list1:
+		_add_related_file(file)
+	# 具体修改部分得看_on_inspiration_add_button_pressed
+	memo_add_btn.set_meta('memo_id',memoEn.id)
