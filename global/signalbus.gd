@@ -13,3 +13,8 @@ signal inspiration_memo_added(memoEn:MemoEntity)
 signal inspiration_related_file_deled(filepath:String)
 # 定义一个和查看灵感页面有关的
 signal panel_double_clicked(memoEn:MemoEntity)
+# ==以下是和链接有关的信号
+# 定义一个和添加链接有关的link
+signal inspiration_link_add(link_id:String)
+# 链接删除信号
+signal inspiration_link_deled(link_id:String)

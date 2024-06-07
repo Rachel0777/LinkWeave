@@ -12,6 +12,12 @@ extends PanelContainer
 # 进行一个增删改查
 @onready var menuButton = %inspiration_inspiration_detail_button
 
+# ==link链接部分==
+# 首先是选择链接后展示
+@onready var related_link_comp_scene = preload("res://components/link_out_stroll_container.tscn")
+@onready var related_link_container = %link_out_vbox_container
+@onready var link_out_btn = %link_out_button
+
 func _ready():
 	_set_memo()
 	# 下面的是修改MenuButton的PopUpMenu的，使其TransparentBG=true
@@ -34,7 +40,9 @@ func _on_menu_item_clicked(index:int):
 		del_memo()
 	# 2复制链接
 	elif index == 2:
-		pass
+		var memo_id = memoEn.id 
+		var text_to_copy = memo_id
+		DisplayServer.clipboard_set(text_to_copy)
 	else:
 		print("PopupMenu index error!")
 
@@ -70,9 +78,14 @@ func _set_memo():
 	else:
 		tag_label.hide()
 	content_label.text = memoEn.content
+	# 显示file
 	if len(memoEn.file_path)!=0:
 		for file_path in memoEn.file_path:
 			_add_related_file_ui(file_path)
+	# 显示链接linkout
+	if len(memoEn.linkout)!=0:
+		for link_out in memoEn.linkout:
+			_add_related_link_ui(link_out)
 
 # 下面处理MenuButton的，使其背景透明的
 func _apply_script_to_menubuttons(node):
@@ -83,25 +96,50 @@ func _apply_script_to_menubuttons(node):
 				_on_popup_about_to_show(popup_menu)
 		else:
 			_apply_script_to_menubuttons(child)
-
 func _on_popup_about_to_show(popup_menu):
 	if popup_menu:
 		var viewport = popup_menu.get_viewport()
 		if viewport:
 			viewport.transparent_bg = true
 			
-# 更新UI	
+# 更新文件UI	
 func _add_related_file_ui(file_path:String):
 	var relatedFileComp = related_file_comp_scene.instantiate()
 	relatedFileComp.filepath = file_path
-	# 获取按钮节点
-	var file_button = relatedFileComp.get_node("file_button")
+	# 获取按钮节点，让用户只能看文件，不能删除关联文件
 	var del_button = relatedFileComp.get_node("del_button")
-	# 禁用按钮
-	file_button.disabled = true
-	del_button.disabled = true
+	del_button.hide()
 	related_file_container.add_child(relatedFileComp)
 
+# 显示链接link
+func _add_related_link_ui(link_out):
+	link_out_btn.show()
+	var link_container = related_link_comp_scene.instantiate()
+	# 获取一下panel，让输入的hide，只显示最后的link
+	var add_link_container = link_container.get_node("add_link_container")
+	var show_link_container = link_container.get_node("show_link_container")
+	var del_btn = show_link_container.get_node("del_button")
+	var show_link_text = show_link_container.get_node("link_button")
+	add_link_container.hide()
+	show_link_container.show()
+	# 同时不能删除link
+	del_btn.hide()
+	show_link_text.text=get_link_text(memoEn)
+	related_link_container.add_child(link_container)
+
+# 跟显示link相关的
+# link button显示的内容，包括date+tag+content
+func get_link_text(memoEn:MemoEntity):
+	var text = memoEn.date
+	if memoEn.tag !='NULL':
+		text=text +' #'+ get_tag_full_name(memoEn.tag)+' '
+	if len(memoEn.content)>15:
+		text+=memoEn.content.substr(0, 15)
+		text+='……'
+	else:
+		text+=memoEn.content
+	return text
+	
 # 如果双击panel，则查看内容
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:

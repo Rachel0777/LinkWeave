@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://btvusbx781b30"]
+[gd_scene load_steps=15 format=3 uid="uid://btvusbx781b30"]
 
 [ext_resource type="Theme" uid="uid://cbra74d4qris6" path="res://assets/theme/default.tres" id="1_b14tj"]
 [ext_resource type="FontFile" uid="uid://bqeanl0rvmlbo" path="res://assets/fonts/SourceHanSerif-VF.otf.ttc" id="2_512c4"]
 [ext_resource type="Script" path="res://pages/inspiration/memo_show_panel_container.gd" id="2_vg4rp"]
 [ext_resource type="Script" path="res://pages/inspiration/inspiration_memo_resource.gd" id="3_7vaj3"]
 [ext_resource type="Texture2D" uid="uid://d1rxony85lv5x" path="res://assets/icons/三个点.png" id="3_kda6i"]
+[ext_resource type="Texture2D" uid="uid://bhtw8jfbip3bx" path="res://assets/icons/引用链接.png" id="6_3pihi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oef1n"]
 content_margin_left = 15.0
@@ -131,5 +132,29 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_constants/separation = 17
+
+[node name="inspiration_link_container" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="link_out_button" type="Button" parent="VBoxContainer/inspiration_link_container"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(43, 43)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("1_b14tj")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/inspiration_link_container/link_out_button"]
+custom_minimum_size = Vector2(43, 43)
+layout_mode = 1
+offset_right = 43.0
+offset_bottom = 43.0
+texture = ExtResource("6_3pihi")
+expand_mode = 1
+
+[node name="link_out_vbox_container" type="VBoxContainer" parent="VBoxContainer/inspiration_link_container"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

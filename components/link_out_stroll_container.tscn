@@ -1,0 +1,153 @@
+[gd_scene load_steps=19 format=3 uid="uid://cyoq2ukn384e4"]
+
+[ext_resource type="Script" path="res://components/link_out_stroll_container.gd" id="1_l7afs"]
+[ext_resource type="Theme" uid="uid://cbra74d4qris6" path="res://assets/theme/default.tres" id="1_rkxwn"]
+[ext_resource type="Texture2D" uid="uid://bykn1q5iawir5" path="res://assets/icons/加2.png" id="3_dufen"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cuy1c"]
+content_margin_left = 10.0
+content_margin_top = 0.0
+content_margin_right = 10.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.733333, 0.733333, 0.733333, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sorl2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtxbc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x7cwl"]
+bg_color = Color(0.882353, 0.831373, 0.741176, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rmvdm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l0k4a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_se7ft"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dtoyu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_thu63"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q3xde"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xul7d"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qnr8b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fm41g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ajrik"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w04d3"]
+
+[node name="link_out_stroll_container" type="VBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 47.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+script = ExtResource("1_l7afs")
+
+[node name="add_link_container" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="link_text" type="TextEdit" parent="add_link_container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(650, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_rkxwn")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(1, 0.843137, 0.25098, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_cuy1c")
+placeholder_text = "复制链接至此"
+
+[node name="link_add_button" type="Button" parent="add_link_container"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+tooltip_text = "选择标签后点击添加为其子节点"
+theme = ExtResource("1_rkxwn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sorl2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_rtxbc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x7cwl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rmvdm")
+
+[node name="TextureRect" type="TextureRect" parent="add_link_container/link_add_button"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_dufen")
+expand_mode = 1
+
+[node name="link_input_error" type="Label" parent="add_link_container"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 2
+theme = ExtResource("1_rkxwn")
+theme_override_colors/font_color = Color(1, 0.843137, 0.25098, 1)
+text = "输入链接不正确"
+
+[node name="show_link_container" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="link_button" type="Button" parent="show_link_container"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "点击后可打开链接"
+theme = ExtResource("1_rkxwn")
+theme_override_colors/font_color = Color(0.733333, 0.733333, 0.733333, 1)
+theme_override_colors/font_pressed_color = Color(0.976471, 0.862745, 0.360784, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.862745, 0.360784, 1)
+theme_override_colors/font_focus_color = Color(0.733333, 0.733333, 0.733333, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.733333, 0.733333, 0.733333, 1)
+theme_override_colors/font_disabled_color = Color(0.733333, 0.733333, 0.733333, 1)
+theme_override_colors/font_outline_color = Color(0.733333, 0.733333, 0.733333, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_l0k4a")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_se7ft")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dtoyu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_thu63")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q3xde")
+text = "readme.md"
+alignment = 0
+
+[node name="del_button" type="Button" parent="show_link_container"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.733333, 0.733333, 0.733333, 1)
+theme_override_colors/font_pressed_color = Color(0.843137, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.843137, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.733333, 0.733333, 0.733333, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.843137, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.733333, 0.733333, 0.733333, 1)
+theme_override_font_sizes/font_size = 33
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xul7d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qnr8b")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fm41g")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ajrik")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w04d3")
+text = "×"
+
+[connection signal="pressed" from="add_link_container/link_add_button" to="." method="_on_link_add_button_pressed"]
+[connection signal="pressed" from="show_link_container/del_button" to="." method="_on_del_button_pressed"]

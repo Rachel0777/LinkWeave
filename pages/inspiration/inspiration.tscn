@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://ud5shvanfk22"]
+[gd_scene load_steps=40 format=3 uid="uid://ud5shvanfk22"]
 
 [ext_resource type="Script" path="res://pages/inspiration/inspiration.gd" id="1_vc22h"]
 [ext_resource type="Theme" uid="uid://cbra74d4qris6" path="res://assets/theme/default.tres" id="1_xad1q"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://me0fm7jrv4dh" path="res://assets/icons/trashcan回收站.png" id="5_22m40"]
 [ext_resource type="Texture2D" uid="uid://0b8rhtxj0cff" path="res://assets/icons/取消框.png" id="5_eidfg"]
 [ext_resource type="FontFile" uid="uid://bqeanl0rvmlbo" path="res://assets/fonts/SourceHanSerif-VF.otf.ttc" id="6_ab4m2"]
+[ext_resource type="Texture2D" uid="uid://bhtw8jfbip3bx" path="res://assets/icons/引用链接.png" id="13_50x7e"]
 
 [sub_resource type="Resource" id="Resource_7rv1f"]
 script = ExtResource("2_cojst")
@@ -115,6 +116,12 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3om8t"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kb6xp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_phrup"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r20rq"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4jxb6"]
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -147,6 +154,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_vc22h")
 memoEn = SubResource("Resource_7rv1f")
 
@@ -158,6 +167,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lp1k4")
+metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -384,6 +394,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_oef1n")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer"]
 layout_mode = 2
+theme_override_constants/separation = 5
 
 [node name="inspiration_tag_container" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -450,6 +461,9 @@ theme = ExtResource("1_xad1q")
 theme_override_colors/background_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kb6xp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_phrup")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_r20rq")
 wrap_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer"]
@@ -478,6 +492,7 @@ texture = ExtResource("2_00mcv")
 expand_mode = 1
 
 [node name="inspiration_link_button" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(37, 37)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -611,6 +626,27 @@ expand_mode = 3
 [node name="inspiration_link_container" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="link_out_button" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_link_container"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(43, 43)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("1_xad1q")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_link_container/link_out_button"]
+custom_minimum_size = Vector2(43, 43)
+layout_mode = 1
+offset_right = 43.0
+offset_bottom = 43.0
+texture = ExtResource("13_50x7e")
+expand_mode = 1
+
+[node name="link_out_vbox_container" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_link_container"]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -628,6 +664,7 @@ size_flags_vertical = 3
 [connection signal="id_pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_tag_container/tag_add_button_top/tag_change_popup_menu" to="." method="_on_tag_change_popup_menu_id_pressed"]
 [connection signal="item_selected" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_tag_container/popup_menu_tag_tree/popup_tag_tree" to="." method="_on_popup_tag_tree_item_selected"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/inspiration_tag_button" to="." method="_on_inspiration_tag_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/inspiration_link_button" to="." method="_on_inspiration_link_button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/inspiration_file_button" to="." method="_on_inspiration_file_button_pressed"]
 [connection signal="file_selected" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/inspiration_file_button/SelectFileDialog_Inspiration" to="." method="_on_select_file_dialog_inspiration_file_selected"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/HBoxContainer/inspiration_cancel_button" to="." method="_on_inspiration_cancel_button_pressed"]
