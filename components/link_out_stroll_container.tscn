@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://cyoq2ukn384e4"]
+[gd_scene load_steps=21 format=3 uid="uid://cyoq2ukn384e4"]
 
 [ext_resource type="Script" path="res://components/link_out_stroll_container.gd" id="1_l7afs"]
 [ext_resource type="Theme" uid="uid://cbra74d4qris6" path="res://assets/theme/default.tres" id="1_rkxwn"]
 [ext_resource type="Texture2D" uid="uid://bykn1q5iawir5" path="res://assets/icons/加2.png" id="3_dufen"]
+[ext_resource type="PackedScene" uid="uid://dbfg25aib713c" path="res://pages/inspiration/PopUpLink.tscn" id="4_w0lhs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cuy1c"]
 content_margin_left = 10.0
@@ -49,12 +50,14 @@ content_margin_bottom = 0.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w04d3"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ryn3a"]
+
 [node name="link_out_stroll_container" type="VBoxContainer"]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 47.0
 grow_horizontal = 2
-size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_l7afs")
 
 [node name="add_link_container" type="HBoxContainer" parent="."]
@@ -149,5 +152,15 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_ajrik")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_w04d3")
 text = "×"
 
+[node name="memo_pop_up_panel" type="PopupPanel" parent="."]
+unique_name_in_owner = true
+size = Vector2i(1920, 1080)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ryn3a")
+
+[node name="PopUpLink" parent="memo_pop_up_panel" instance=ExtResource("4_w0lhs")]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
 [connection signal="pressed" from="add_link_container/link_add_button" to="." method="_on_link_add_button_pressed"]
+[connection signal="pressed" from="show_link_container/link_button" to="." method="_on_link_button_pressed"]
 [connection signal="pressed" from="show_link_container/del_button" to="." method="_on_del_button_pressed"]

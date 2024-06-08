@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://btvusbx781b30"]
+[gd_scene load_steps=16 format=3 uid="uid://btvusbx781b30"]
 
 [ext_resource type="Theme" uid="uid://cbra74d4qris6" path="res://assets/theme/default.tres" id="1_b14tj"]
 [ext_resource type="FontFile" uid="uid://bqeanl0rvmlbo" path="res://assets/fonts/SourceHanSerif-VF.otf.ttc" id="2_512c4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://pages/inspiration/inspiration_memo_resource.gd" id="3_7vaj3"]
 [ext_resource type="Texture2D" uid="uid://d1rxony85lv5x" path="res://assets/icons/三个点.png" id="3_kda6i"]
 [ext_resource type="Texture2D" uid="uid://bhtw8jfbip3bx" path="res://assets/icons/引用链接.png" id="6_3pihi"]
+[ext_resource type="Texture2D" uid="uid://cbu1w70tjhaut" path="res://assets/icons/被引用链接.png" id="7_h35hc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oef1n"]
 content_margin_left = 15.0
@@ -52,6 +53,8 @@ content_margin_bottom = 0.0
 bg_color = Color(0.933333, 0.952941, 0.996078, 1)
 
 [node name="memo_show_panel_container" type="PanelContainer"]
+size_flags_horizontal = 3
+size_flags_vertical = 0
 theme = ExtResource("1_b14tj")
 theme_override_styles/panel = SubResource("StyleBoxFlat_oef1n")
 script = ExtResource("2_vg4rp")
@@ -133,19 +136,19 @@ layout_mode = 2
 size_flags_horizontal = 2
 theme_override_constants/separation = 17
 
-[node name="inspiration_link_container" type="HBoxContainer" parent="VBoxContainer"]
+[node name="inspiration_linkout_container" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="link_out_button" type="Button" parent="VBoxContainer/inspiration_link_container"]
+[node name="link_out_button" type="Button" parent="VBoxContainer/inspiration_linkout_container"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(43, 43)
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 0
+tooltip_text = "点击后可以看见所有被这个memo链接的memo"
 theme = ExtResource("1_b14tj")
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/inspiration_link_container/link_out_button"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/inspiration_linkout_container/link_out_button"]
 custom_minimum_size = Vector2(43, 43)
 layout_mode = 1
 offset_right = 43.0
@@ -153,8 +156,47 @@ offset_bottom = 43.0
 texture = ExtResource("6_3pihi")
 expand_mode = 1
 
-[node name="link_out_vbox_container" type="VBoxContainer" parent="VBoxContainer/inspiration_link_container"]
+[node name="link_out_vbox_container" type="VBoxContainer" parent="VBoxContainer/inspiration_linkout_container"]
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="inspiration_linkin_container" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="link_in_button" type="Button" parent="VBoxContainer/inspiration_linkin_container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(43, 43)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "点击后可以看见所有链接到这个memo的memo"
+theme = ExtResource("1_b14tj")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/inspiration_linkin_container/link_in_button"]
+custom_minimum_size = Vector2(43, 43)
+layout_mode = 1
+offset_right = 43.0
+offset_bottom = 43.0
+texture = ExtResource("7_h35hc")
+expand_mode = 1
+
+[node name="link_in_show_button" type="Button" parent="VBoxContainer/inspiration_linkin_container"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_b14tj")
+theme_override_colors/font_color = Color(0.733333, 0.733333, 0.733333, 1)
+theme_override_colors/font_pressed_color = Color(0.976471, 0.862745, 0.360784, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.862745, 0.360784, 1)
+theme_override_colors/font_focus_color = Color(0.733333, 0.733333, 0.733333, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.733333, 0.733333, 0.733333, 1)
+theme_override_colors/font_disabled_color = Color(0.733333, 0.733333, 0.733333, 1)
+theme_override_colors/font_outline_color = Color(0.733333, 0.733333, 0.733333, 1)
+theme_override_font_sizes/font_size = 30
+text = "看一下字体"
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="VBoxContainer/inspiration_linkout_container/link_out_button" to="." method="_on_link_out_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/inspiration_linkin_container/link_in_button" to="." method="_on_link_in_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/inspiration_linkin_container/link_in_show_button" to="." method="_on_link_in_show_button_pressed"]

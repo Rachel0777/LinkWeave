@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbfg25aib713c"]
+
+[ext_resource type="Script" path="res://pages/inspiration/PopUpLink.gd" id="1_ml5sa"]
+[ext_resource type="Theme" uid="uid://cbra74d4qris6" path="res://assets/theme/default.tres" id="1_salp8"]
+[ext_resource type="Texture2D" uid="uid://drjcusyqsfmt3" path="res://assets/icons/叉叉.svg" id="3_d82wy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5106"]
+content_margin_left = 200.0
+content_margin_top = 160.0
+content_margin_right = 200.0
+content_margin_bottom = 160.0
+bg_color = Color(0.733333, 0.733333, 0.733333, 0.196078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6xe7"]
+content_margin_left = 20.0
+content_margin_top = 16.0
+content_margin_right = 20.0
+content_margin_bottom = 16.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucefa"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 1)
+
+[node name="PopUpLink" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ml5sa")
+
+[node name="window_container" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_salp8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_g5106")
+
+[node name="PanelContainer" type="PanelContainer" parent="window_container"]
+layout_mode = 2
+theme = ExtResource("1_salp8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_j6xe7")
+
+[node name="memoVBoxContainer" type="VBoxContainer" parent="window_container/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="window_container/PanelContainer/memoVBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="window_container/PanelContainer/memoVBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "笔记详情"
+
+[node name="close_pop_up_button" type="Button" parent="window_container/PanelContainer/memoVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="TextureRect" type="TextureRect" parent="window_container/PanelContainer/memoVBoxContainer/HBoxContainer/close_pop_up_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_d82wy")
+expand_mode = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="window_container/PanelContainer/memoVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ucefa")
+horizontal_scroll_mode = 0
+
+[node name="memo_container" type="VBoxContainer" parent="window_container/PanelContainer/memoVBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+
+[connection signal="pressed" from="window_container/PanelContainer/memoVBoxContainer/HBoxContainer/close_pop_up_button" to="." method="_on_close_pop_up_button_pressed"]

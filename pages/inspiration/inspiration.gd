@@ -146,11 +146,34 @@ func _on_tag_del_button_pressed():
 	else:
 		# 找到id对应tagEn
 		var tag_del_data = GlobalVariables.get_inspiration_tag(tag_del)
+		# 获得一下所有的子类
+		children_list.append(tag_del)
+		get_all_tag_children(tag_del_data)
 		# 删除储存的数据
 		GlobalVariables.del_inspiration_tag(tag_del_data)
 		GlobalVariables.save_inspiration_tag_file()
 		# 更新当前UI显示
 		Signalbus.inspiration_tag_deled.emit(tag_del_data)
+		# 如果删除了，所有的笔记的tag也要跟着删除
+		var memo_id_list = GlobalVariables.get_all_inspiration_memo_keys()
+		for memo_id in memo_id_list:
+			var memoEn1 = GlobalVariables.get_inspiration_memo(memo_id)
+			if memoEn1.tag in children_list:
+				memoEn1.tag = 'NULL'
+				save_memo(memoEn1)
+		show_all_memo()
+		children_list = []
+
+# 获得一个tag的所有子类
+@onready var children_list = []
+func get_all_tag_children(tag_data:TagEntity):
+	# 再去把子类删除了
+	var children_id_list = tag_data.children_id
+	if children_id_list.size()>0:
+		for child_id in children_id_list:
+			var child_data = GlobalVariables.get_inspiration_tag(child_id)
+			children_list.append(child_id)
+			get_all_tag_children(child_data)
 
 # ==灵感添加存储部分==
 # ==memo标签有关==
@@ -169,22 +192,8 @@ func _on_popup_tag_tree_item_selected():
 		var tag_id = selected_item.get_metadata(0)
 		# 把这个标签的id存到button_tag里了，之后就可以很方便的通过button_tag存一下
 		button_tag.set_meta('tag_id',tag_id)
-		button_tag.text = '# '+get_tag_full_name(tag_id)
+		button_tag.text = '# '+ GlobalVariables.get_tag_full_name(tag_id)
 		popup_menu_tag.hide()
-
-# 获得这个tag的名字，包括其父类的名字
-func get_tag_full_name(tag_id:String) -> String:
-	var current_tag = GlobalVariables.get_inspiration_tag(tag_id)
-	var tag_names = []
-	while current_tag != null:
-		tag_names.append(current_tag.name)
-		current_tag = GlobalVariables.get_inspiration_tag(current_tag.parent_id)
-	var tag_name = ""
-	for i in range(tag_names.size() - 1, -1, -1):
-		if i!=0:
-			tag_name += tag_names[i] + "/"
-	tag_name += tag_names[0]
-	return tag_name
 	
 # 修改或者删除这个tag
 func _on_tag_add_button_top_pressed():
@@ -246,8 +255,12 @@ func get_memo_data()->MemoEntity:
 	#memoEn.date = "%d-%02d-%02d %02d:%02d:%02d" % [time["year"], time["month"], time["day"], time["hour"], time["minute"], time["second"]]
 	#print(memoEn.date)
 	# 链接的linkout和linkin先挖个坑空着
-	memoEn.linkout=link_out_list
-	
+	memoEn.linkout = link_out_list
+	if memoEn.id == memo_id:
+		var memo_En_original = GlobalVariables.get_inspiration_memo(memo_id)
+		memoEn.linkin = memo_En_original.linkin
+	# 除了给自己的linkin一下，由于link了别人，还要更新一下别人的linkin
+	GlobalVariables.update_other_link_in(memoEn)
 	# 文件
 	memoEn.file_path = file_list
 	return memoEn
@@ -280,7 +293,6 @@ func _on_inspiration_add_button_pressed():
 		memoEdit.clear()
 		clear_inspiration_tag()
 		inspiration_memo_added_error.hide()
-		clear_memo_container(memoContainer)
 		# 删除一下文件，这个比较麻烦一点点
 		clear_inspiration_file()
 		# 删除link，从UI到link_out_list
@@ -296,6 +308,7 @@ func clear_memo_container(container):
 
 # 显示所有memo
 func show_all_memo():
+	clear_memo_container(memoContainer)
 	for memo_id in GlobalVariables.get_all_inspiration_memo_keys():
 		var memoPanel = memoPanelScene.instantiate()
 		memoPanel.memoEn = GlobalVariables.get_inspiration_memo(memo_id)
@@ -341,19 +354,41 @@ func _on_panel_double_clicked(memoEn:MemoEntity):
 	_on_inspiration_cancel_button_pressed()
 	# 显示content
 	memoEdit.text = memoEn.content
-	# 显示button
-	var tag_id = memoEn.tag
-	button_tag.text = '# '+get_tag_full_name(tag_id)
-	button_tag.set_meta('tag_id',tag_id)
-	button_tag.show()
+	# 显示tag的button
+	if memoEn.tag != 'NULL':
+		var tag_id = memoEn.tag
+		button_tag.text = '# '+ GlobalVariables.get_tag_full_name(tag_id)
+		button_tag.set_meta('tag_id',tag_id)
+		button_tag.show()
 	# 显示file
 	var file_list1 = memoEn.file_path
 	for file in file_list1:
 		_add_related_file(file)
+	# 显示linkout
+	if len(memoEn.linkout)!=0:
+		link_out_list = memoEn.linkout
+		for link_out in memoEn.linkout:
+			_add_related_link_ui(link_out)
 	# 具体修改部分得看_on_inspiration_add_button_pressed
 	memo_add_btn.set_meta('memo_id',memoEn.id)
 
 # ==下面是和灵感页面链接有关的==
+# 显示link的UI,显示链接link
+func _add_related_link_ui(link_out):
+	link_out_btn.show()
+	var link_container = related_link_comp_scene.instantiate()
+	# 获取一下panel，让输入的hide，只显示最后的link
+	var add_link_container = link_container.get_node("add_link_container")
+	var show_link_container = link_container.get_node("show_link_container")
+	var del_btn = show_link_container.get_node("del_button")
+	var show_link_text = show_link_container.get_node("link_button")
+	add_link_container.hide()
+	show_link_container.show()
+	show_link_text.set_meta('link_id',link_out)
+	var memoEn1 =GlobalVariables.get_inspiration_memo(link_out)
+	show_link_text.text = GlobalVariables.get_link_text(memoEn1)
+	related_link_container.add_child(link_container)
+
 # 点击链接图标，插入链接
 func _on_inspiration_link_button_pressed():
 	link_out_btn.show()
@@ -374,5 +409,18 @@ func clear_inspiration_link_out():
 
 # 删除这一个link
 func _on_link_deled(link_id):
+	var link_in_En = GlobalVariables.get_inspiration_memo(link_id)
+	var memo_id = memo_add_btn.get_meta('memo_id','NULL')
+	link_in_En.linkin.erase(memo_id)
+	save_memo(link_in_En)
 	memoEn.linkout.erase(link_id)
 	link_out_list.erase(link_id)
+	if len(link_out_list) == 0:
+		link_out_btn.hide()
+
+# 点击这个button显示该memo的所有link
+func _on_link_out_button_pressed():
+	Signalbus.window_close.emit('window open')
+	Signalbus.inspiration_link_show.emit(link_out_list)
+
+

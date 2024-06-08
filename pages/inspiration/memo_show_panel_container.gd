@@ -17,12 +17,15 @@ extends PanelContainer
 @onready var related_link_comp_scene = preload("res://components/link_out_stroll_container.tscn")
 @onready var related_link_container = %link_out_vbox_container
 @onready var link_out_btn = %link_out_button
+@onready var linkin_container = %inspiration_linkin_container
+@onready var link_in_btn = %link_in_show_button
 
 func _ready():
 	_set_memo()
 	# 下面的是修改MenuButton的PopUpMenu的，使其TransparentBG=true
 	_apply_script_to_menubuttons(self)
 	init_menu_btn()
+	init_link_in()
 
 # 做一些关于menu_button的初始化
 func init_menu_btn():
@@ -33,7 +36,6 @@ func init_menu_btn():
 func _on_menu_item_clicked(index:int):
 	# 0编辑
 	if index == 0:
-		print('编辑')
 		Signalbus.panel_double_clicked.emit(memoEn)
 	# 1删除
 	elif index == 1:
@@ -53,28 +55,13 @@ func del_memo():
 	# 从数据中删除
 	GlobalVariables.del_memo(memoEn.id)
 
-# 获得这个tag的名字，包括其父类的名字
-func get_tag_full_name(tag_id:String) -> String:
-	var current_tag = GlobalVariables.get_inspiration_tag(tag_id)
-	#print(current_tag.name)
-	var tag_names = []
-	while current_tag != null:
-		tag_names.append(current_tag.name)
-		current_tag = GlobalVariables.get_inspiration_tag(current_tag.parent_id)
-	var tag_name = ""
-	for i in range(tag_names.size() - 1, -1, -1):
-		if i!=0:
-			tag_name += tag_names[i] + "/"
-	tag_name += tag_names[0]
-	return tag_name
-
 # 设置一下memo的内容显示
 func _set_memo():
 	date_label.text = memoEn.date
 	# 这里有点问题，不知道为什么……
 	if memoEn.tag != "NULL":
 		tag_label.show()
-		tag_label.text = '# ' + get_tag_full_name(memoEn.tag)
+		tag_label.text = '# ' + GlobalVariables.get_tag_full_name(memoEn.tag)
 	else:
 		tag_label.hide()
 	content_label.text = memoEn.content
@@ -111,6 +98,12 @@ func _add_related_file_ui(file_path:String):
 	del_button.hide()
 	related_file_container.add_child(relatedFileComp)
 
+# 如果双击panel，则查看内容
+func _on_gui_input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		Signalbus.panel_double_clicked.emit(memoEn)
+
+# ==link==
 # 显示链接link
 func _add_related_link_ui(link_out):
 	link_out_btn.show()
@@ -124,23 +117,31 @@ func _add_related_link_ui(link_out):
 	show_link_container.show()
 	# 同时不能删除link
 	del_btn.hide()
-	show_link_text.text=get_link_text(memoEn)
+	show_link_text.set_meta('link_id',link_out)
+	var link_memoEn = GlobalVariables.get_inspiration_memo(link_out)
+	show_link_text.text = GlobalVariables.get_link_text(link_memoEn)
 	related_link_container.add_child(link_container)
-
-# 跟显示link相关的
-# link button显示的内容，包括date+tag+content
-func get_link_text(memoEn:MemoEntity):
-	var text = memoEn.date
-	if memoEn.tag !='NULL':
-		text=text +' #'+ get_tag_full_name(memoEn.tag)+' '
-	if len(memoEn.content)>15:
-		text+=memoEn.content.substr(0, 15)
-		text+='……'
-	else:
-		text+=memoEn.content
-	return text
 	
-# 如果双击panel，则查看内容
-func _on_gui_input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		Signalbus.panel_double_clicked.emit(memoEn)
+# 如果按了的话，显示所有linkout
+func _on_link_out_button_pressed():
+	var link_out_list = memoEn.linkout
+	Signalbus.window_close.emit('window open')
+	Signalbus.inspiration_link_show.emit(link_out_list)
+
+# 初始化一下linkin
+func init_link_in():
+	if len(memoEn.linkin)!=0:
+		linkin_container.show()
+		link_in_btn.text = '被' + str(len(memoEn.linkin)) + '条memo引用'
+	else:
+		linkin_container.hide()
+
+# 如果按了的话，显示所有linkin
+func _on_link_in_button_pressed():
+	open_linkin()
+func _on_link_in_show_button_pressed():
+	open_linkin()
+func open_linkin():
+	var link_in_list = memoEn.linkin
+	Signalbus.window_close.emit('window open')
+	Signalbus.inspiration_link_show.emit(link_in_list)

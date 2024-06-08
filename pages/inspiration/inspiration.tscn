@@ -349,7 +349,7 @@ custom_minimum_size = Vector2(37, 37)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-tooltip_text = "选择标签后点击进行删除"
+tooltip_text = "选择标签后点击进行删除，而且会删除memo中相应标签"
 theme = ExtResource("1_xad1q")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_jkfi4")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_53twy")
@@ -633,6 +633,7 @@ custom_minimum_size = Vector2(43, 43)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+tooltip_text = "点击后可以看见所有被这个memo链接的memo"
 theme = ExtResource("1_xad1q")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_link_container/link_out_button"]
@@ -669,3 +670,4 @@ size_flags_vertical = 3
 [connection signal="file_selected" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/inspiration_file_button/SelectFileDialog_Inspiration" to="." method="_on_select_file_dialog_inspiration_file_selected"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/HBoxContainer/inspiration_cancel_button" to="." method="_on_inspiration_cancel_button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/HBoxContainer/inspiration_add_button" to="." method="_on_inspiration_add_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_link_container/link_out_button" to="." method="_on_link_out_button_pressed"]
