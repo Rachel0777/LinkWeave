@@ -3,10 +3,6 @@ extends Node
 # 随机生成uuid
 var uuid_util = preload("res://addon/uuid.gd")
 
-#func _ready():
-	#load_inspiration_memo_file()
-	#load_inspiration_tag_file()
-
 # == tag对应内容，可以复用 == 
 # 生成tag对应的存储位置
 const INSPIRATION_TAG_FILE_PATH = 'user://inspiration_tag.txt'
@@ -98,15 +94,32 @@ func add_inspiration_memo(memo_data:MemoEntity):
 
 # 删除memo
 func del_memo(memo_id:String):
+	var memoEn = get_inspiration_memo(memo_id)
+	# 把linkin对应删除一下
+	if len(memoEn.linkout)!=0:
+		for link_id in memoEn.linkout:
+			var memo_linkEn = get_inspiration_memo(link_id)
+			memo_linkEn.linkin.erase(memo_id)
+			GlobalVariables.add_inspiration_memo(memo_linkEn)
+			GlobalVariables.save_inspiration_memo_file()	
+	# 如果有linkout对应也删一下
+	if len(memoEn.linkin)!=0:
+		for link_id in memoEn.linkin:
+			var memo_linkEn = get_inspiration_memo(link_id)
+			memo_linkEn.linkout.erase(memo_id)
+			GlobalVariables.add_inspiration_memo(memo_linkEn)
+			GlobalVariables.save_inspiration_memo_file()
 	inspiration_memo_config_file.erase_section_key('inspiration_memo',memo_id)
 	save_inspiration_memo_file()
 
 # ==link==
 # link button显示的内容，包括date+tag+content
 func get_link_text(memoEn:MemoEntity):
-	var text = memoEn.date
+	var today = memoEn.date
+	var today_string = str(today.year)+'-'+str(today.month)+'-'+str(today.day)+' '+str(today.hour)+':'+str(today.minute)+':'+str(today.second)
+	var text =  today_string
 	if memoEn.tag !='NULL':
-		text=text +' #'+ get_tag_full_name(memoEn.tag)+' '
+		text= text +' #'+ get_tag_full_name(memoEn.tag)+' '
 	if len(memoEn.content)>15:
 		text+=memoEn.content.substr(0, 15)
 		text+='……'
@@ -126,7 +139,7 @@ func get_link_text(memoEn:MemoEntity):
 	#return link_in_list
 
 # 更新别人的linkin，即新建了一个memo，有一个linkout，更新其他memo的linkin
-func  update_other_link_in(memoEn:MemoEntity):
+func update_other_link_in(memoEn:MemoEntity):
 	var link_out_list = memoEn.linkout
 	if len(link_out_list)!=0:
 		for link_id in link_out_list:
@@ -135,3 +148,13 @@ func  update_other_link_in(memoEn:MemoEntity):
 				memo_link_En.linkin.append(memoEn.id)
 			add_inspiration_memo(memo_link_En)
 
+# == 日历有关 ==
+func calendar_day_color(day1:Dictionary):
+	var num = 0
+	var memo_id_list = get_all_inspiration_memo_keys()
+	for memo_id in memo_id_list:
+		var memo:MemoEntity = GlobalVariables.get_inspiration_memo(memo_id)
+		var date = memo.date
+		if date.year == day1.year and date.month == day1.month and date.day == day1.day:
+			num+=1
+	return num

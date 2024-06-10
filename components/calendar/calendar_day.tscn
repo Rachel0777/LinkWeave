@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://k2ignsncols5"]
+
+[ext_resource type="Theme" uid="uid://cbra74d4qris6" path="res://assets/theme/default.tres" id="1_cklug"]
+[ext_resource type="Script" path="res://components/calendar/calendar_day.gd" id="1_iojeo"]
+
+[node name="calendar day" type="Panel"]
+custom_minimum_size = Vector2(40, 40)
+theme = ExtResource("1_cklug")
+script = ExtResource("1_iojeo")

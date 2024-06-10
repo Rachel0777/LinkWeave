@@ -34,6 +34,7 @@ extends Control
 @onready var file_list: Array[String]
 # 通过这个button存储一下uuid，实际上是标注一下这个memoEn是否已经存在
 @onready var memo_add_btn = %inspiration_add_button
+# 获得日期
 
 # ==链接部分==
 # 首先是选择链接后展示
@@ -42,6 +43,10 @@ extends Control
 @onready var link_out_btn = %link_out_button
 # 存储link_out的id
 @onready var link_out_list : Array[String]
+
+# ==日历部分==
+@onready var calendar_container = %month_container
+@onready var calendar_scene = preload('res://components/calendar/calendar_month.tscn')
 
 func _ready():
 	# ==下面这是标签的，人物部分可以复用==
@@ -57,10 +62,13 @@ func _ready():
 	Signalbus.inspiration_related_file_deled.connect(_on_related_file_deled)
 	# 查看memo
 	Signalbus.panel_double_clicked.connect(_on_panel_double_clicked)
-	
+	# 删除memo
+	Signalbus.inspiration_memo_deled.connect(_on_memo_deled)
 	# ==下面是链接有关的==
 	Signalbus.inspiration_link_add.connect(_on_link_added)
 	Signalbus.inspiration_link_deled.connect(_on_link_deled)
+	# ==日历==
+	show_calendar()
 	
 # == 标签部分代码 ==
 # 创建树
@@ -249,11 +257,10 @@ func get_memo_data()->MemoEntity:
 	memoEn.book_id = 'NULL'
 	# 之前的tag存到了button_tag里，现在取出
 	memoEn.tag = button_tag.get_meta('tag_id','NULL')
-	## 获得当前时间
-	## 这个也先挖一个坑，等回头date那里把时间弄明白了再回来
-	#var time = Time.get_time_dict_from_system()
-	#memoEn.date = "%d-%02d-%02d %02d:%02d:%02d" % [time["year"], time["month"], time["day"], time["hour"], time["minute"], time["second"]]
-	#print(memoEn.date)
+	# 获得当前时间
+	# 这个也先挖一个坑，等回头date那里把时间弄明白了再回来
+	var today = Time.get_datetime_dict_from_system()
+	memoEn.date = today
 	# 链接的linkout和linkin先挖个坑空着
 	memoEn.linkout = link_out_list
 	if memoEn.id == memo_id:
@@ -298,6 +305,8 @@ func _on_inspiration_add_button_pressed():
 		# 删除link，从UI到link_out_list
 		clear_inspiration_link_out()
 		show_all_memo()
+		# 更新日历
+		show_calendar()
 	else:
 		inspiration_memo_added_error.show()
 
@@ -313,6 +322,11 @@ func show_all_memo():
 		var memoPanel = memoPanelScene.instantiate()
 		memoPanel.memoEn = GlobalVariables.get_inspiration_memo(memo_id)
 		memoContainer.add_child(memoPanel)
+
+func _on_memo_deled(msg:String):
+	if msg == 'memo deled':
+		show_all_memo()
+		show_calendar()
 
 # ==关联文件有关==
 # 加入文件，弹出对话框
@@ -423,4 +437,8 @@ func _on_link_out_button_pressed():
 	Signalbus.window_close.emit('window open')
 	Signalbus.inspiration_link_show.emit(link_out_list)
 
-
+# ==日历==
+func show_calendar():
+	clear_memo_container(calendar_container)
+	var calendar_month = calendar_scene.instantiate()
+	calendar_container.add_child(calendar_month)

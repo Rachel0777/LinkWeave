@@ -54,10 +54,13 @@ func del_memo():
 	self.queue_free()
 	# 从数据中删除
 	GlobalVariables.del_memo(memoEn.id)
+	Signalbus.inspiration_memo_deled.emit('memo deled')
 
 # 设置一下memo的内容显示
 func _set_memo():
-	date_label.text = memoEn.date
+	var today = memoEn.date
+	var today_string = str(today.year)+'-'+str(today.month)+'-'+str(today.day)+' '+str(today.hour)+':'+str(today.minute)+':'+str(today.second)
+	date_label.text = today_string
 	# 这里有点问题，不知道为什么……
 	if memoEn.tag != "NULL":
 		tag_label.show()

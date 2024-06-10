@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnsm0slhk57bi"]
+
+[ext_resource type="Theme" uid="uid://cbra74d4qris6" path="res://assets/theme/default.tres" id="1_3qp23"]
+[ext_resource type="Script" path="res://components/calendar/calendar_month.gd" id="1_vx28n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5n8g"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="CalendarMonth" type="Control"]
+custom_minimum_size = Vector2(320, 300)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1600.0
+offset_bottom = -780.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+script = ExtResource("1_vx28n")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_3qp23")
+theme_override_styles/panel = SubResource("StyleBoxFlat_i5n8g")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="month_label" type="Label" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_3qp23")
+text = "test"
+
+[node name="month_container" type="GridContainer" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 5
+columns = 7

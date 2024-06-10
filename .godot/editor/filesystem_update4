@@ -1,11 +1,8 @@
-res://pages/inspiration/inspiration.tscn
+res://pages/inspiration/memo_show_panel_container.tscn
 res://assets/theme/default.tres
 res://pages/inspiration/memo_show_panel_container.gd
 res://assets/theme/inspiration_button.tres
+res://pages/inspiration/inspiration.tscn
+res://components/calendar/calendar_month.tscn
+res://components/calendar/calendar_day.tscn
 res://components/link_out_stroll_container.tscn
-res://pages/inspiration/PopUpLink.tscn
-res://pages/inspiration/memo_show_panel_container.tscn
-res://pages/inspiration/inspiration.gd
-res://pages/inspiration/PopUpLink.gd
-res://components/link_out_stroll_container.gd
-res://global/global_variables.gd
