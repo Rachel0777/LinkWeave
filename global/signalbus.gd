@@ -24,3 +24,7 @@ signal inspiration_link_deled(link_id:String)
 signal inspiration_link_show(link_id_list)
 # 关闭PopUpPanel
 signal window_close(msg:String)
+
+# ==场景清单==
+signal scene_list_added(scene_data:SceneEntity)
+signal scene_list_clicked(scene_data:SceneEntity)

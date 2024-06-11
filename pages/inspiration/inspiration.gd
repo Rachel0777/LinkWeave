@@ -64,6 +64,8 @@ func _ready():
 	Signalbus.panel_double_clicked.connect(_on_panel_double_clicked)
 	# 删除memo
 	Signalbus.inspiration_memo_deled.connect(_on_memo_deled)
+	# 左上角label显示
+	_set_label_num()
 	# ==下面是链接有关的==
 	Signalbus.inspiration_link_add.connect(_on_link_added)
 	Signalbus.inspiration_link_deled.connect(_on_link_deled)
@@ -170,6 +172,7 @@ func _on_tag_del_button_pressed():
 				memoEn1.tag = 'NULL'
 				save_memo(memoEn1)
 		show_all_memo()
+		_set_label_num()
 		children_list = []
 
 # 获得一个tag的所有子类
@@ -305,6 +308,7 @@ func _on_inspiration_add_button_pressed():
 		# 删除link，从UI到link_out_list
 		clear_inspiration_link_out()
 		show_all_memo()
+		_set_label_num()
 		# 更新日历
 		show_calendar()
 	else:
@@ -327,6 +331,7 @@ func _on_memo_deled(msg:String):
 	if msg == 'memo deled':
 		show_all_memo()
 		show_calendar()
+		_set_label_num()
 
 # ==关联文件有关==
 # 加入文件，弹出对话框
@@ -386,6 +391,24 @@ func _on_panel_double_clicked(memoEn:MemoEntity):
 	# 具体修改部分得看_on_inspiration_add_button_pressed
 	memo_add_btn.set_meta('memo_id',memoEn.id)
 
+# 左上角的label数字修改
+func _set_label_num():
+	var memo_id_list = GlobalVariables.get_all_inspiration_memo_keys()
+	var memo_num_label = %memo_num_label
+	memo_num_label.text = str(len(memo_id_list))
+	var tag_id_list = GlobalVariables.get_all_inspiration_tag_keys()
+	var tag_num_label = %tag_num_label
+	tag_num_label.text = str(len(tag_id_list))
+	var day_num_label = %day_num_label
+	var date_list = []
+	for memo_id in memo_id_list:
+		var memoEn = GlobalVariables.get_inspiration_memo(memo_id)
+		var date = memoEn.date
+		var date_string = str(date.year)+'-'+str(date.month)+'-'+str(date.day)
+		if date_string not in date_list:
+			date_list.append(date_string)
+	day_num_label.text = str(len(date_list))
+	
 # ==下面是和灵感页面链接有关的==
 # 显示link的UI,显示链接link
 func _add_related_link_ui(link_out):

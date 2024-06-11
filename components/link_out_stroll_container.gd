@@ -60,3 +60,4 @@ func _pop_up_link_closed(msg):
 		memo_popup.hide()
 	elif msg == 'window open':
 		memo_popup.show()
+

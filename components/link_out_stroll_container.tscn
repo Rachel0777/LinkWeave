@@ -57,16 +57,16 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 47.0
 grow_horizontal = 2
-size_flags_vertical = 3
+size_flags_vertical = 4
 script = ExtResource("1_l7afs")
 
 [node name="add_link_container" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 4
 theme_override_constants/separation = 10
 
-[node name="link_text" type="TextEdit" parent="add_link_container"]
+[node name="link_text" type="LineEdit" parent="add_link_container"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(650, 50)
 layout_mode = 2
@@ -74,6 +74,7 @@ size_flags_horizontal = 0
 theme = ExtResource("1_rkxwn")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(1, 0.843137, 0.25098, 1)
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_cuy1c")
 placeholder_text = "复制链接至此"
 
@@ -113,6 +114,7 @@ text = "输入链接不正确"
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+size_flags_vertical = 4
 
 [node name="link_button" type="Button" parent="show_link_container"]
 unique_name_in_owner = true

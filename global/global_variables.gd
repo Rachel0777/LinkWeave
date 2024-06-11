@@ -100,15 +100,23 @@ func del_memo(memo_id:String):
 		for link_id in memoEn.linkout:
 			var memo_linkEn = get_inspiration_memo(link_id)
 			memo_linkEn.linkin.erase(memo_id)
-			GlobalVariables.add_inspiration_memo(memo_linkEn)
-			GlobalVariables.save_inspiration_memo_file()	
+			add_inspiration_memo(memo_linkEn)
+			save_inspiration_memo_file()	
 	# 如果有linkout对应也删一下
 	if len(memoEn.linkin)!=0:
 		for link_id in memoEn.linkin:
 			var memo_linkEn = get_inspiration_memo(link_id)
 			memo_linkEn.linkout.erase(memo_id)
-			GlobalVariables.add_inspiration_memo(memo_linkEn)
-			GlobalVariables.save_inspiration_memo_file()
+			add_inspiration_memo(memo_linkEn)
+			save_inspiration_memo_file()
+	# 如果场景有对应的linkout也删一下
+	var scene_id_list = get_all_scene_list_keys()
+	for scene_id in scene_id_list:
+		var sceneEn = get_scene_list(scene_id)
+		if memo_id in sceneEn.linkout:
+			sceneEn.linkout.erase(memo_id)
+			add_scene_list(sceneEn)
+			save_scene_list_file()
 	inspiration_memo_config_file.erase_section_key('inspiration_memo',memo_id)
 	save_inspiration_memo_file()
 
@@ -158,3 +166,31 @@ func calendar_day_color(day1:Dictionary):
 		if date.year == day1.year and date.month == day1.month and date.day == day1.day:
 			num+=1
 	return num
+
+# == scene list对应内容 == 
+const SCENE_LIST_FILE_PATH = 'user://scene_list.txt'
+var scene_list_config_file = ConfigFile.new()
+func load_scene_list_file():
+	scene_list_config_file.clear()
+	scene_list_config_file.load(SCENE_LIST_FILE_PATH)
+func save_scene_list_file():
+	scene_list_config_file.save(SCENE_LIST_FILE_PATH)
+func get_all_scene_list_keys():
+	load_scene_list_file()
+	return scene_list_config_file.get_section_keys('scene_list')
+func get_scene_list(id:String):
+	return scene_list_config_file.get_value('scene_list',id)
+func add_scene_list(scene_data:SceneEntity):
+	# 保存这一条数据
+	scene_list_config_file.set_value('scene_list',scene_data.id,scene_data)
+func del_scene_list(scene_data:SceneEntity):
+	scene_list_config_file.erase_section_key('scene_list',scene_data.id)
+	save_scene_list_file()
+# 需要一个行数，所以用这个
+func find_scene_entity_index_by_id(target_id: String) -> int:
+	var scene_id_list = get_all_scene_list_keys()
+	for i in range(len(scene_id_list)):
+		var sceneEn = get_scene_list(scene_id_list[i])
+		if sceneEn.id == target_id:
+			return i+1
+	return -1

@@ -1,14 +1,4 @@
-Panel
-Label
-ColorRect
-GridContainer
-HBoxContainer
-VBoxContainer
-PanelContainer
-Button
-TextureRect
-ScrollContainer
-PopupPanel
+LineEdit
 TextEdit
-HScrollBar
-VSeparator
+Button
+Label

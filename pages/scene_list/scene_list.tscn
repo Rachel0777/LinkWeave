@@ -1,0 +1,306 @@
+[gd_scene load_steps=13 format=3 uid="uid://dunlwkrxhqqfl"]
+
+[ext_resource type="Theme" uid="uid://cbra74d4qris6" path="res://assets/theme/default.tres" id="1_gqkti"]
+[ext_resource type="Script" path="res://pages/scene_list/scene_list.gd" id="1_yxj4u"]
+[ext_resource type="FontFile" uid="uid://bqeanl0rvmlbo" path="res://assets/fonts/SourceHanSerif-VF.otf.ttc" id="2_dbg0f"]
+[ext_resource type="Script" path="res://addon/table_container/table_container.gd" id="3_ajfh4"]
+[ext_resource type="Texture2D" uid="uid://c6h0bgr52ifal" path="res://assets/icons/trashcan回收站yellow.png" id="4_secsj"]
+[ext_resource type="Texture2D" uid="uid://bykn1q5iawir5" path="res://assets/icons/加2.png" id="5_f3p04"]
+[ext_resource type="Texture2D" uid="uid://cq3ouxd1nyihl" path="res://assets/icons/链接.png" id="6_uvj78"]
+[ext_resource type="Texture2D" uid="uid://bhtw8jfbip3bx" path="res://assets/icons/引用链接.png" id="6_ylfun"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0lp0v"]
+content_margin_left = 50.0
+content_margin_top = 40.0
+content_margin_right = 50.0
+content_margin_bottom = 70.0
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgdvs"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(0.733333, 0.733333, 0.733333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a1ra4"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.976471, 0.862745, 0.360784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knffg"]
+bg_color = Color(0.733333, 0.733333, 0.733333, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.733333, 0.733333, 0.733333, 0.352941)
+
+[node name="SceneList" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yxj4u")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_gqkti")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0lp0v")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_gqkti")
+theme_override_colors/font_color = Color(0.882353, 0.831373, 0.741176, 1)
+theme_override_fonts/font = ExtResource("2_dbg0f")
+theme_override_font_sizes/font_size = 40
+text = "List of Scenes"
+
+[node name="TableContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 5
+script = ExtResource("3_ajfh4")
+separation_horizontal = 10
+separation_vertical = 5
+
+[node name="head_container" type="HBoxContainer" parent="PanelContainer/VBoxContainer/TableContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label5" type="Label" parent="PanelContainer/VBoxContainer/TableContainer/head_container"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+theme = ExtResource("1_gqkti")
+theme_override_font_sizes/font_size = 40
+text = "行"
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/TableContainer/head_container"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+theme = ExtResource("1_gqkti")
+theme_override_font_sizes/font_size = 40
+text = "章节"
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/TableContainer/head_container"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "地点"
+
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/TableContainer/head_container"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "时间"
+
+[node name="Label4" type="Label" parent="PanelContainer/VBoxContainer/TableContainer/head_container"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "事件"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/TableContainer/head_container"]
+custom_minimum_size = Vector2(207, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Label5" type="Label" parent="PanelContainer/VBoxContainer/TableContainer/head_container/HBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "灵感链接"
+
+[node name="scene_link_button" type="Button" parent="PanelContainer/VBoxContainer/TableContainer/head_container/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(43, 43)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "点击后可以看见所有链接的memo"
+theme = ExtResource("1_gqkti")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/TableContainer/head_container/HBoxContainer/scene_link_button"]
+custom_minimum_size = Vector2(43, 43)
+layout_mode = 1
+offset_right = 43.0
+offset_bottom = 43.0
+texture = ExtResource("6_uvj78")
+expand_mode = 1
+
+[node name="add_container" type="HBoxContainer" parent="PanelContainer/VBoxContainer/TableContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="row_column_btn" type="Button" parent="PanelContainer/VBoxContainer/TableContainer/add_container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+tooltip_text = "点击后选择标签"
+theme = ExtResource("1_gqkti")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.976471, 0.862745, 0.360784, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.862745, 0.360784, 1)
+theme_override_colors/font_focus_color = Color(0.976471, 0.862745, 0.360784, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+disabled = true
+text = "0"
+
+[node name="chapter" type="TextEdit" parent="PanelContainer/VBoxContainer/TableContainer/add_container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_gqkti")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.686275, 0.686275, 0.686275, 1)
+theme_override_fonts/font = ExtResource("2_dbg0f")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_mgdvs")
+placeholder_text = "输入章节"
+
+[node name="place" type="TextEdit" parent="PanelContainer/VBoxContainer/TableContainer/add_container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_gqkti")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.686275, 0.686275, 0.686275, 1)
+theme_override_fonts/font = ExtResource("2_dbg0f")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_mgdvs")
+placeholder_text = "输入地点"
+
+[node name="time" type="TextEdit" parent="PanelContainer/VBoxContainer/TableContainer/add_container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_gqkti")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.686275, 0.686275, 0.686275, 1)
+theme_override_fonts/font = ExtResource("2_dbg0f")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_mgdvs")
+placeholder_text = "输入时间"
+
+[node name="event" type="TextEdit" parent="PanelContainer/VBoxContainer/TableContainer/add_container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_gqkti")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.686275, 0.686275, 0.686275, 1)
+theme_override_fonts/font = ExtResource("2_dbg0f")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_mgdvs")
+theme_override_styles/focus = SubResource("StyleBoxFlat_a1ra4")
+placeholder_text = "输入事件"
+wrap_mode = 1
+
+[node name="scene_linkout_container" type="HBoxContainer" parent="PanelContainer/VBoxContainer/TableContainer/add_container"]
+custom_minimum_size = Vector2(207, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="link_out_button" type="Button" parent="PanelContainer/VBoxContainer/TableContainer/add_container/scene_linkout_container"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(43, 43)
+layout_mode = 2
+size_flags_vertical = 0
+tooltip_text = "点击后可以看见所有链接的memo"
+theme = ExtResource("1_gqkti")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/TableContainer/add_container/scene_linkout_container/link_out_button"]
+custom_minimum_size = Vector2(43, 43)
+layout_mode = 1
+offset_right = 43.0
+offset_bottom = 43.0
+texture = ExtResource("6_ylfun")
+expand_mode = 1
+
+[node name="scene_linkout_vboxcontainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TableContainer/add_container/scene_linkout_container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+
+[node name="error_msg" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("1_gqkti")
+theme_override_colors/font_color = Color(0.976471, 0.862745, 0.360784, 1)
+theme_override_font_sizes/font_size = 40
+text = "未输入"
+
+[node name="del_button" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/del_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_secsj")
+expand_mode = 1
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxFlat_knffg")
+
+[node name="add_button" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/add_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_f3p04")
+expand_mode = 1
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/TableContainer/head_container/HBoxContainer/scene_link_button" to="." method="_on_scene_link_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/TableContainer/add_container/scene_linkout_container/link_out_button" to="." method="_on_link_out_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/del_button" to="." method="_on_del_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/add_button" to="." method="_on_add_button_pressed"]

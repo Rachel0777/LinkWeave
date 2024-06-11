@@ -1,0 +1,105 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1n5ap5bsn6bf"]
+
+[ext_resource type="Theme" uid="uid://cbra74d4qris6" path="res://assets/theme/default.tres" id="1_3fyvj"]
+[ext_resource type="Script" path="res://pages/scene_list/scene_list_container.gd" id="1_df5ed"]
+[ext_resource type="FontFile" uid="uid://bqeanl0rvmlbo" path="res://assets/fonts/SourceHanSerif-VF.otf.ttc" id="2_1wn6j"]
+[ext_resource type="Texture2D" uid="uid://bhtw8jfbip3bx" path="res://assets/icons/引用链接.png" id="4_wrvsl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5qj0p"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(0.733333, 0.733333, 0.733333, 1)
+
+[node name="scene_list_container" type="HBoxContainer"]
+theme_override_constants/separation = 10
+script = ExtResource("1_df5ed")
+
+[node name="row_column_btn" type="Button" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(37, 37)
+layout_mode = 2
+size_flags_horizontal = 2
+tooltip_text = "点击后选择标签"
+theme = ExtResource("1_3fyvj")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.976471, 0.862745, 0.360784, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.862745, 0.360784, 1)
+theme_override_colors/font_focus_color = Color(0.976471, 0.862745, 0.360784, 1)
+theme_override_font_sizes/font_size = 40
+text = "1"
+
+[node name="chapter" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(156, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_3fyvj")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_1wn6j")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_5qj0p")
+
+[node name="place" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(156, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_3fyvj")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_1wn6j")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_5qj0p")
+
+[node name="time" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(156, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_3fyvj")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_1wn6j")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_5qj0p")
+
+[node name="event" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_3fyvj")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_1wn6j")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_5qj0p")
+autowrap_mode = 3
+
+[node name="inspiration_linkout_container" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="link_out_button" type="Button" parent="inspiration_linkout_container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "点击后可以看见所有链接的memo"
+theme = ExtResource("1_3fyvj")
+
+[node name="TextureRect" type="TextureRect" parent="inspiration_linkout_container/link_out_button"]
+custom_minimum_size = Vector2(43, 43)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_wrvsl")
+expand_mode = 1
+
+[node name="link_out_vbox_container" type="VBoxContainer" parent="inspiration_linkout_container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+
+[connection signal="pressed" from="row_column_btn" to="." method="_on_row_column_btn_pressed"]
+[connection signal="pressed" from="inspiration_linkout_container/link_out_button" to="." method="_on_link_out_button_pressed"]
