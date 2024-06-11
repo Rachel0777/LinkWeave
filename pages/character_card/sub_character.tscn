@@ -1,0 +1,525 @@
+[gd_scene load_steps=31 format=3 uid="uid://bbqr16fmhfvtm"]
+
+[ext_resource type="LabelSettings" uid="uid://b2wka2xsh4iua" path="res://asset/themes/label_theme.tres" id="1_dakob"]
+[ext_resource type="Script" path="res://pages/character_card/sub_character.gd" id="1_l07ni"]
+[ext_resource type="Script" path="res://pages/character_card/entity_sub_character.gd" id="2_26uve"]
+[ext_resource type="Theme" uid="uid://bxofxiw811wpf" path="res://asset/themes/optionbutton.tres" id="2_jl2mw"]
+[ext_resource type="Theme" uid="uid://binru6c1n3q16" path="res://asset/themes/line_edit.tres" id="2_ofu02"]
+[ext_resource type="Texture2D" uid="uid://b0tkdlr8sb5bu" path="res://asset/UI/图片.png" id="2_y6qvu"]
+[ext_resource type="Texture2D" uid="uid://cu8chgtksg6ni" path="res://asset/UI/trashcan回收站yellow.png" id="3_qmgpq"]
+[ext_resource type="Texture2D" uid="uid://cxwhqg2n151ym" path="res://asset/UI/trashcan回收站.png" id="4_2rfbb"]
+[ext_resource type="Theme" uid="uid://huy0ohyn1kwp" path="res://asset/themes/textedit.tres" id="5_g47pd"]
+[ext_resource type="FontFile" uid="uid://bqeanl0rvmlbo" path="res://assets/fonts/SourceHanSerif-VF.otf.ttc" id="7_hf4me"]
+[ext_resource type="Theme" uid="uid://cbra74d4qris6" path="res://assets/theme/default.tres" id="7_wjqff"]
+[ext_resource type="Texture2D" uid="uid://cgpplkgp4ywqr" path="res://assets/icons/井号.png" id="8_f0r2k"]
+[ext_resource type="Texture2D" uid="uid://3i2b1appv7r0" path="res://asset/UI/保存 (1).svg" id="10_f65aw"]
+[ext_resource type="Texture2D" uid="uid://m6knx00c13g3" path="res://asset/UI/保存 (2).svg" id="11_f0ccy"]
+[ext_resource type="Theme" uid="uid://bggg8eaejujge" path="res://asset/themes/label.tres" id="14_3k373"]
+
+[sub_resource type="Theme" id="Theme_7idtf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qln26"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.733333, 0.733333, 0.733333, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Resource" id="Resource_wcruw"]
+script = ExtResource("2_26uve")
+cname = ""
+nickname = ""
+gender = ""
+age = ""
+appearance = ""
+personality = ""
+background = ""
+img_path = ""
+realation_who = ""
+relationdetail = ""
+book_id = ""
+id = ""
+color = Color(0, 0, 0, 1)
+tag = ""
+
+[sub_resource type="Theme" id="Theme_1v3us"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67jos"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.733333, 0.733333, 0.733333, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kg3v"]
+bg_color = Color(0.933333, 0.952941, 0.996078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ngxi"]
+bg_color = Color(0.933333, 0.952941, 0.996078, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.376471, 0.541176, 0.968627, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5mo2l"]
+bg_color = Color(0.933333, 0.952941, 0.996078, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.376471, 0.541176, 0.968627, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k117v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_152ke"]
+bg_color = Color(0.933333, 0.952941, 0.996078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1sxvs"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.733333, 0.733333, 0.733333, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jj6jl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_daywm"]
+
+[sub_resource type="Theme" id="Theme_ckgxh"]
+FileDialog/colors/file_disabled_color = Color(0.996078, 0.996078, 0.996078, 0.25098)
+FileDialog/colors/file_icon_color = Color(1, 1, 1, 1)
+FileDialog/colors/folder_icon_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_2w5no"]
+
+[node name="PanelContainer" type="ScrollContainer"]
+custom_minimum_size = Vector2(0, 900)
+offset_right = 406.0
+offset_bottom = 900.0
+size_flags_vertical = 0
+theme = SubResource("Theme_7idtf")
+theme_override_styles/panel = SubResource("StyleBoxFlat_qln26")
+script = ExtResource("1_l07ni")
+characterEntity = SubResource("Resource_wcruw")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme = SubResource("Theme_1v3us")
+theme_override_constants/v_separation = 6
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/HBoxContainer"]
+custom_minimum_size = Vector2(15, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/HBoxContainer"]
+layout_mode = 2
+text = "姓名"
+label_settings = ExtResource("1_dakob")
+
+[node name="name" type="LineEdit" parent="GridContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("2_ofu02")
+theme_override_styles/normal = SubResource("StyleBoxFlat_67jos")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(15, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/HBoxContainer4"]
+layout_mode = 2
+text = "绰号"
+label_settings = ExtResource("1_dakob")
+
+[node name="nickname" type="LineEdit" parent="GridContainer/HBoxContainer4"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("2_ofu02")
+theme_override_styles/normal = SubResource("StyleBoxFlat_67jos")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HSeparator" type="HSeparator" parent="GridContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(15, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/HBoxContainer5"]
+layout_mode = 2
+text = "性别"
+label_settings = ExtResource("1_dakob")
+
+[node name="gender" type="LineEdit" parent="GridContainer/HBoxContainer5"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("2_ofu02")
+theme_override_styles/normal = SubResource("StyleBoxFlat_67jos")
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(15, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/HBoxContainer6"]
+layout_mode = 2
+text = "年龄"
+label_settings = ExtResource("1_dakob")
+
+[node name="age" type="LineEdit" parent="GridContainer/HBoxContainer6"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("2_ofu02")
+theme_override_styles/normal = SubResource("StyleBoxFlat_67jos")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(15, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/HBoxContainer3"]
+layout_mode = 2
+text = "标签"
+label_settings = ExtResource("1_dakob")
+
+[node name="character_tag_button" type="Button" parent="GridContainer/HBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+tooltip_text = "点击后选择标签"
+theme = ExtResource("7_wjqff")
+
+[node name="TextureRect" type="TextureRect" parent="GridContainer/HBoxContainer3/character_tag_button"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_f0r2k")
+expand_mode = 1
+
+[node name="inspiration_tag_container" type="HBoxContainer" parent="GridContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="tag_button" type="MenuButton" parent="GridContainer/HBoxContainer3/inspiration_tag_container"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.376471, 0.541176, 0.968627, 1)
+theme_override_colors/font_pressed_color = Color(0.376471, 0.541176, 0.968627, 1)
+theme_override_colors/font_hover_color = Color(0.376471, 0.541176, 0.968627, 1)
+theme_override_colors/font_focus_color = Color(0.376471, 0.541176, 0.968627, 1)
+theme_override_fonts/font = ExtResource("7_hf4me")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_5kg3v")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4ngxi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5mo2l")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_k117v")
+theme_override_styles/focus = SubResource("StyleBoxFlat_152ke")
+text = "#"
+item_count = 2
+popup/item_0/text = "修改"
+popup/item_0/id = 0
+popup/item_1/text = "删除"
+popup/item_1/id = 1
+
+[node name="popup_menu_tag_tree" type="PanelContainer" parent="GridContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("7_wjqff")
+theme_override_styles/panel = SubResource("StyleBoxFlat_1sxvs")
+
+[node name="popup_tag_tree" type="Tree" parent="GridContainer/popup_menu_tag_tree"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.631373, 0.631373, 0.631373, 1)
+theme_override_colors/font_selected_color = Color(1, 0.843137, 0.25098, 1)
+theme_override_fonts/title_button_font = ExtResource("7_hf4me")
+theme_override_fonts/font = ExtResource("7_hf4me")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jj6jl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_daywm")
+allow_rmb_select = true
+hide_root = true
+
+[node name="HBoxContainer12" type="HBoxContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/HBoxContainer12"]
+custom_minimum_size = Vector2(15, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/HBoxContainer12"]
+layout_mode = 2
+text = "关系"
+label_settings = ExtResource("1_dakob")
+
+[node name="rewho" type="OptionButton" parent="GridContainer/HBoxContainer12"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "选择人物"
+theme = ExtResource("2_jl2mw")
+
+[node name="redetail" type="LineEdit" parent="GridContainer/HBoxContainer12"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_ofu02")
+placeholder_text = "填写关系"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HSeparator" type="HSeparator" parent="GridContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/HBoxContainer7"]
+custom_minimum_size = Vector2(15, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "外貌"
+label_settings = ExtResource("1_dakob")
+
+[node name="appearance" type="TextEdit" parent="GridContainer/HBoxContainer7"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+theme = ExtResource("5_g47pd")
+theme_override_styles/normal = SubResource("StyleBoxFlat_67jos")
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/HBoxContainer8"]
+custom_minimum_size = Vector2(15, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "性格"
+label_settings = ExtResource("1_dakob")
+
+[node name="personality" type="TextEdit" parent="GridContainer/HBoxContainer8"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+theme = ExtResource("5_g47pd")
+theme_override_styles/normal = SubResource("StyleBoxFlat_67jos")
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/HBoxContainer9"]
+custom_minimum_size = Vector2(15, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/HBoxContainer9"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "背景"
+label_settings = ExtResource("1_dakob")
+
+[node name="background" type="TextEdit" parent="GridContainer/HBoxContainer9"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+theme = ExtResource("5_g47pd")
+theme_override_styles/normal = SubResource("StyleBoxFlat_67jos")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HSeparator" type="HSeparator" parent="GridContainer/VBoxContainer3"]
+layout_mode = 2
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/HBoxContainer10"]
+custom_minimum_size = Vector2(15, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/HBoxContainer10"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "图片"
+label_settings = ExtResource("1_dakob")
+
+[node name="TextureButton" type="TextureButton" parent="GridContainer/HBoxContainer10"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture_normal = ExtResource("2_y6qvu")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="FileDialog" type="FileDialog" parent="GridContainer/HBoxContainer10/TextureButton"]
+unique_name_in_owner = true
+title = "Open a File"
+initial_position = 1
+size = Vector2i(800, 600)
+theme = SubResource("Theme_ckgxh")
+ok_button_text = "打开"
+file_mode = 0
+access = 2
+root_subfolder = "E:/"
+filters = PackedStringArray("*.png", "*.jpg", "*.svg", "*.jpeg")
+show_hidden_files = true
+use_native_dialog = true
+
+[node name="delete" type="TextureButton" parent="GridContainer/HBoxContainer10"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 8
+theme = SubResource("Theme_2w5no")
+texture_normal = ExtResource("3_qmgpq")
+texture_pressed = ExtResource("4_2rfbb")
+texture_hover = ExtResource("4_2rfbb")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="save" type="TextureButton" parent="GridContainer/HBoxContainer10"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 8
+texture_normal = ExtResource("10_f65aw")
+texture_pressed = ExtResource("11_f0ccy")
+texture_hover = ExtResource("11_f0ccy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="right_ins" type="Label" parent="GridContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource("14_3k373")
+text = "人物保存成功"
+horizontal_alignment = 1
+
+[node name="wrong_ins" type="Label" parent="GridContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("14_3k373")
+text = "姓名和性格不能为空"
+horizontal_alignment = 1
+
+[node name="picture_format" type="Label" parent="GridContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("14_3k373")
+theme_override_font_sizes/font_size = 20
+text = "图片只支持四种格式（png,svg,jpg,jpeg)"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="GridContainer/HBoxContainer3/character_tag_button" to="." method="_on_character_tag_button_pressed"]
+[connection signal="pressed" from="GridContainer/HBoxContainer3/inspiration_tag_container/tag_button" to="." method="_on_tag_button_pressed"]
+[connection signal="item_selected" from="GridContainer/popup_menu_tag_tree/popup_tag_tree" to="." method="_on_popup_tag_tree_item_selected"]
+[connection signal="pressed" from="GridContainer/HBoxContainer10/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="file_selected" from="GridContainer/HBoxContainer10/TextureButton/FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="GridContainer/HBoxContainer10/delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="GridContainer/HBoxContainer10/save" to="." method="_on_save_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

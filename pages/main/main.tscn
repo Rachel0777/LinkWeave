@@ -1,0 +1,449 @@
+[gd_scene load_steps=21 format=3 uid="uid://22vddqo8s4c3"]
+
+[ext_resource type="Script" path="res://pages/main/main.gd" id="1_fj0b4"]
+[ext_resource type="Texture2D" uid="uid://b7ttukf0e7bxk" path="res://asset/UI/knitting.png" id="1_odjwf"]
+[ext_resource type="FontFile" uid="uid://60pqlkcutjgj" path="res://asset/fonts/PoiretOne-Regular.ttf" id="3_3xdwb"]
+[ext_resource type="Texture2D" uid="uid://l4uak1x4oqkd" path="res://asset/UI/首页2.png" id="3_rl5d4"]
+[ext_resource type="FontFile" uid="uid://cmoj7ex21pgtg" path="res://asset/fonts/思源宋体 CN-Medium.otf" id="4_cmp2m"]
+[ext_resource type="Texture2D" uid="uid://8xg15y67cykd" path="res://asset/UI/首页选中.png" id="5_satpy"]
+[ext_resource type="Texture2D" uid="uid://ddq4ujv2u1cxd" path="res://asset/UI/卡片列表.png" id="6_qvbyu"]
+[ext_resource type="Texture2D" uid="uid://b4bfvtoduj1nu" path="res://asset/UI/清单选中.png" id="7_ovh75"]
+[ext_resource type="Texture2D" uid="uid://ecww3su4pv2o" path="res://asset/UI/反馈选中.png" id="8_ej186"]
+[ext_resource type="Texture2D" uid="uid://beygw5uxeru5b" path="res://asset/UI/收起.png" id="9_h5jc6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01v10"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gsfse"]
+bg_color = Color(0.980392, 0.980392, 0.980392, 1)
+shadow_color = Color(0.4, 0.4, 0.4, 0.101961)
+shadow_size = 1
+shadow_offset = Vector2(10, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nc3j"]
+bg_color = Color(0.980392, 0.980392, 0.980392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbxbl"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_llqtf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/HBoxContainer/PanelContainer:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(400, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yri0f"]
+resource_name = "shrink"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/HBoxContainer/PanelContainer:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.5001),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(400, 0), Vector2(150, 0), Vector2(400, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j5lj3"]
+_data = {
+"RESET": SubResource("Animation_llqtf"),
+"shrink": SubResource("Animation_yri0f")
+}
+
+[sub_resource type="Animation" id="Animation_gp80n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/HBoxContainer/PanelContainer:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(400, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1sd5f"]
+resource_name = "expand"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/HBoxContainer/PanelContainer:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(120, 0), Vector2(400, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_srshw"]
+_data = {
+"RESET": SubResource("Animation_gp80n"),
+"expand": SubResource("Animation_1sd5f")
+}
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fj0b4")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_01v10")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gsfse")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="logoContainer" type="PanelContainer" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6nc3j")
+
+[node name="Control" type="Control" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/logoContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/logoContainer/Control"]
+layout_mode = 0
+offset_right = 465.0
+offset_bottom = 150.0
+
+[node name="占位符" type="VBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/logoContainer/Control/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/logoContainer/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="占位符" type="HBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/logoContainer/Control/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/logoContainer/Control/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureButton" type="TextureButton" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/logoContainer/Control/HBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+texture_normal = ExtResource("1_odjwf")
+texture_pressed = ExtResource("1_odjwf")
+texture_hover = ExtResource("1_odjwf")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/logoContainer/Control/HBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_3xdwb")
+theme_override_font_sizes/font_size = 50
+text = "Link Weave"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="占位符" type="VBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="HBoxContainer" type="Control" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+offset_right = 50.0
+offset_bottom = 120.0
+
+[node name="home" type="TextureButton" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(68, 68)
+layout_mode = 2
+offset_left = 62.0
+offset_top = 25.0
+offset_right = 130.0
+offset_bottom = 93.0
+size_flags_vertical = 4
+texture_normal = ExtResource("3_rl5d4")
+texture_pressed = ExtResource("3_rl5d4")
+texture_hover = ExtResource("3_rl5d4")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+offset_left = 138.0
+offset_right = 168.0
+offset_bottom = 120.0
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+offset_left = 172.0
+offset_top = 31.0
+offset_right = 250.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_cmp2m")
+theme_override_font_sizes/font_size = 39
+text = "首页"
+
+[node name="HBoxContainer2" type="Control" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+offset_right = 50.0
+offset_bottom = 120.0
+
+[node name="memo" type="TextureButton" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+offset_left = 54.0
+offset_top = 20.0
+offset_right = 134.0
+offset_bottom = 100.0
+size_flags_vertical = 4
+texture_normal = ExtResource("5_satpy")
+texture_pressed = ExtResource("5_satpy")
+texture_hover = ExtResource("5_satpy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+offset_left = 138.0
+offset_right = 168.0
+offset_bottom = 120.0
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+offset_left = 172.0
+offset_top = 31.0
+offset_right = 328.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_cmp2m")
+theme_override_font_sizes/font_size = 39
+text = "灵感随记"
+
+[node name="HBoxContainer3" type="Control" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+offset_right = 50.0
+offset_bottom = 120.0
+
+[node name="character" type="TextureButton" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+offset_left = 54.0
+offset_top = 20.0
+offset_right = 134.0
+offset_bottom = 100.0
+size_flags_vertical = 4
+texture_normal = ExtResource("6_qvbyu")
+texture_pressed = ExtResource("6_qvbyu")
+texture_hover = ExtResource("6_qvbyu")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+offset_left = 138.0
+offset_right = 168.0
+offset_bottom = 120.0
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+offset_left = 172.0
+offset_top = 31.0
+offset_right = 328.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_cmp2m")
+theme_override_font_sizes/font_size = 39
+text = "人物卡片"
+
+[node name="HBoxContainer4" type="Control" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+offset_right = 50.0
+offset_bottom = 120.0
+
+[node name="outline" type="TextureButton" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+offset_left = 54.0
+offset_top = 20.0
+offset_right = 134.0
+offset_bottom = 100.0
+size_flags_vertical = 4
+texture_normal = ExtResource("7_ovh75")
+texture_pressed = ExtResource("7_ovh75")
+texture_hover = ExtResource("7_ovh75")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+offset_left = 138.0
+offset_right = 168.0
+offset_bottom = 120.0
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+offset_left = 172.0
+offset_top = 31.0
+offset_right = 328.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_cmp2m")
+theme_override_font_sizes/font_size = 39
+text = "场景清单"
+
+[node name="HBoxContainer5" type="Control" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+offset_right = 50.0
+offset_bottom = 120.0
+
+[node name="creation" type="TextureButton" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+offset_left = 54.0
+offset_top = 20.0
+offset_right = 134.0
+offset_bottom = 100.0
+size_flags_vertical = 4
+texture_normal = ExtResource("8_ej186")
+texture_pressed = ExtResource("8_ej186")
+texture_hover = ExtResource("8_ej186")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+offset_left = 138.0
+offset_right = 168.0
+offset_bottom = 120.0
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+offset_left = 172.0
+offset_top = 31.0
+offset_right = 328.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_cmp2m")
+theme_override_font_sizes/font_size = 39
+text = "小说创作"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="shrinkbutton" type="TextureButton" parent="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("9_h5jc6")
+texture_pressed = ExtResource("9_h5jc6")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_sbxbl")
+
+[node name="menu" type="Control" parent="PanelContainer/HBoxContainer/PanelContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="shrink" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_j5lj3")
+}
+
+[node name="expand" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_srshw")
+}
+
+[connection signal="pressed" from="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/logoContainer/Control/HBoxContainer/HBoxContainer/VBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/home" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/memo" to="." method="_on_memo_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3/character" to="." method="_on_character_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4/outline" to="." method="_on_outline_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5/creation" to="." method="_on_creation_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/PanelContainer/VBoxContainer/shrinkbutton" to="." method="_on_shrinkbutton_pressed"]

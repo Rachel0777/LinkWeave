@@ -1,0 +1,8 @@
+[character]
+
+49c7bddb-15c4-46a7-8881-1fd3b12658f1=Object(Resource,"resource_local_to_scene":false,"resource_name":"","script":Resource("res://pages/character_card/entity_sub_character.gd"),"cname":"语文","nickname":"国文","gender":"女","age":"100","appearance":"","personality":"1","background":"","img_path":"","realation_who":"语文","relationdetail":"","book_id":"","id":"49c7bddb-15c4-46a7-8881-1fd3b12658f1","color":Color(1, 0.843137, 0.25098, 1),"tag":"a24ab904-a249-4267-86e7-2aa11e89554c")
+
+f48c61ab-1ea7-4940-9784-19a77cf44887=Object(Resource,"resource_local_to_scene":false,"resource_name":"","script":Resource("res://pages/character_card/entity_sub_character.gd"),"cname":"数学","nickname":"算术","gender":"","age":"","appearance":"","personality":"2","background":"","img_path":"","realation_who":"语文","relationdetail":"同事","book_id":"","id":"f48c61ab-1ea7-4940-9784-19a77cf44887","color":Color(1, 0.843137, 0.25098, 1),"tag":"f13099df-f6d0-4ad6-a62c-3c2f272e91a3")
+
+4eed8999-ae61-4bac-b6de-105d94e9102f=Object(Resource,"resource_local_to_scene":false,"resource_name":"","script":Resource("res://pages/character_card/entity_sub_character.gd"),"cname":"赫敏","nickname":"万事通","gender":"女","age":"15","appearance":"1111","personality":"11","background":"11","img_path":"","realation_who":"数学","relationdetail":"学霸","book_id":"","id":"4eed8999-ae61-4bac-b6de-105d94e9102f","color":Color(1, 0.843137, 0.25098, 1),"tag":"NULL")
+

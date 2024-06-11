@@ -28,3 +28,19 @@ signal window_close(msg:String)
 # ==场景清单==
 signal scene_list_added(scene_data:SceneEntity)
 signal scene_list_clicked(scene_data:SceneEntity)
+
+# ==人物页面==
+# 定义一个灵感页面标签添加的信号
+signal character_tag_added(characterEn:CharacterEntity)
+# 定义一个灵感页面标签删除的信号
+signal character_tag_deled(characterEn:CharacterEntity)
+
+#定义人物相关的信号
+signal character_added(characterEn:CharacterEntity)
+signal character_deled(characterEn:CharacterEntity)
+
+signal character_file_changed
+signal file_changed(filename:String)
+
+signal character_changed(msg:String)
+

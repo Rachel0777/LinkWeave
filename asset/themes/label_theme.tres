@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://b2wka2xsh4iua"]
+
+[ext_resource type="FontFile" uid="uid://cmoj7ex21pgtg" path="res://asset/fonts/思源宋体 CN-Medium.otf" id="1_t1sa6"]
+
+[resource]
+font = ExtResource("1_t1sa6")
+font_size = 30
+font_color = Color(0, 0, 0, 1)

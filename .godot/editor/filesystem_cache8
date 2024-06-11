@@ -1,6 +1,7 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1718076384
-knitting.png::CompressedTexture2D::6929956038607017275::1717473768::1718076389::1::::<><>::
+::res://::1718115896
+export_presets.cfg::TextFile::-1::1718115805::0::1::::<><>::
+knitting.png::CompressedTexture2D::6929956038607017275::1717473768::1718091271::1::::<><>::
 ::res://addon/::1718024470
 test.gd::GDScript::-1::1715159399::0::1::::<>SceneTree<>::
 uuid.gd::GDScript::-1::1717489485::0::1::::<>Node<>::
@@ -10,44 +11,96 @@ calendar_locale.gd::GDScript::-1::1718021198::0::1::::CalendarLocale<>Resource<>
 ::res://addon/calendar/demo/::1718021198
 calendar_demo.gd::GDScript::-1::1718021198::0::1::::<>Control<>::
 calendar_demo.tscn::PackedScene::3787715382056069721::1718021198::0::1::::<><>::res://addon/calendar/demo/calendar_demo.gd
-calendar_locale_CN.tres::Resource/CalendarLocale::4206286448575685960::1718021198::0::1::::<><>::res://addons/calendar_library/calendar_locale.gd
-calendar_locale_DE.tres::Resource/CalendarLocale::5450436672353865054::1718021198::0::1::::<><>::res://addons/calendar_library/calendar_locale.gd
-calendar_locale_EN.tres::Resource/CalendarLocale::101201811265250262::1718021198::0::1::::<><>::res://addons/calendar_library/calendar_locale.gd
-calendar_locale_ES.tres::Resource/CalendarLocale::2237919560193441496::1718021198::0::1::::<><>::res://addons/calendar_library/calendar_locale.gd
-calendar_locale_SE.tres::Resource/CalendarLocale::7681016959923112112::1718021198::0::1::::<><>::res://addons/calendar_library/calendar_locale.gd
+calendar_locale_CN.tres::Resource/Resource::4206286448575685960::1718021198::0::1::::<><>::res://addons/calendar_library/calendar_locale.gd
+calendar_locale_DE.tres::Resource/Resource::5450436672353865054::1718021198::0::1::::<><>::res://addons/calendar_library/calendar_locale.gd
+calendar_locale_EN.tres::Resource/Resource::101201811265250262::1718021198::0::1::::<><>::res://addons/calendar_library/calendar_locale.gd
+calendar_locale_ES.tres::Resource/Resource::2237919560193441496::1718021198::0::1::::<><>::res://addons/calendar_library/calendar_locale.gd
+calendar_locale_SE.tres::Resource/Resource::7681016959923112112::1718021198::0::1::::<><>::res://addons/calendar_library/calendar_locale.gd
 ::res://addon/table_container/::1718024470
 plugin.cfg::TextFile::-1::1718021992::0::1::::<><>::
 plugin.gd::GDScript::-1::1718021992::0::1::::<>EditorPlugin<>::
 table_container.gd::GDScript::-1::1718021992::0::1::::TableContainer<>VBoxContainer<>res://addons/table_container/icons/TableContainer.svg::
-::res://addon/table_container/icons/::1718076310
-TableContainer.png::CompressedTexture2D::5340771821090730958::1718021992::1718076389::1::::<><>::
-TableContainer.svg::CompressedTexture2D::6318563480232607466::1718021992::1718076389::1::::<><>::
+::res://addon/table_container/icons/::1718091271
+TableContainer.png::CompressedTexture2D::5340771821090730958::1718021992::1718091271::1::::<><>::
+TableContainer.svg::CompressedTexture2D::6318563480232607466::1718021992::1718091271::1::::<><>::
+::res://asset/::1718091054
+::res://asset/fonts/::1718091270
+BadScriptRegular.ttf::FontFile::8779210645729215466::1565430376::1718091270::1::::<><>::
+PoiretOne-Regular.ttf::FontFile::2228403517547724305::1565430352::1718091270::1::::<><>::
+RopaSans-Italic.ttf::FontFile::6781861474234282406::1565430348::1718091270::1::::<><>::
+TypoPRO-DancingScript-Regular.ttf::FontFile::978849549585546830::1565430344::1718091270::1::::<><>::
+思源宋体 CN-Medium.otf::FontFile::5644612624825282908::1565430318::1718091270::1::::<><>::
+::res://asset/themes/::1718113636
+graph.tres::Theme::4568164223025181502::1718113636::0::1::::<><>::uid://too1ev76ejkc::::res://asset/UI/圆形 (1).svg
+label.tres::Theme::2820363455489080356::1718030928::0::1::::<><>::uid://cmoj7ex21pgtg::::res://asset/fonts/思源宋体 CN-Medium.otf
+label_theme.tres::LabelSettings::4327544396926252320::1717398150::0::1::::<><>::uid://cmoj7ex21pgtg::::res://asset/fonts/思源宋体 CN-Medium.otf
+line_edit.tres::Theme::2975837880868541635::1718107365::0::1::::<><>::uid://cmoj7ex21pgtg::::res://asset/fonts/思源宋体 CN-Medium.otf
+optionbutton.tres::Theme::4030010489855987563::1718107365::0::1::::<><>::uid://cmoj7ex21pgtg::::res://asset/fonts/思源宋体 CN-Medium.otf
+register.tres::StyleBoxFlat::590969817031544457::1717945008::0::1::::<><>::
+textedit.tres::Theme::534112060470829443::1718107365::0::1::::<><>::uid://cmoj7ex21pgtg::::res://asset/fonts/思源宋体 CN-Medium.otf
+tree_themes.tres::Theme::3117718579129960618::1718107365::0::1::::<><>::uid://cmoj7ex21pgtg::::res://asset/fonts/思源宋体 CN-Medium.otf<>uid://cgygn1mta8pnd::::res://pages/character_card/章节 (1).svg
+::res://asset/UI/::1718091273
+knitting.png::CompressedTexture2D::4672876730277947964::1717473770::1718091271::1::::<><>::
+trashcan回收站.png::CompressedTexture2D::6433055030778540948::1710923640::1718091271::1::::<><>::
+trashcan回收站yellow.png::CompressedTexture2D::6244876985543754766::1711533138::1718091271::1::::<><>::
+三个点.png::CompressedTexture2D::8729199751991991755::1710925314::1718091271::1::::<><>::
+书本.png::CompressedTexture2D::821221349964538856::1716973882::1718091272::1::::<><>::
+井号 (1).svg::CompressedTexture2D::5391134008992167133::1717399724::1718091271::1::::<><>::
+井号.png::CompressedTexture2D::7017790640491883742::1710924260::1718091271::1::::<><>::
+保存 (1).svg::CompressedTexture2D::1983445154805527507::1717400662::1718091271::1::::<><>::
+保存 (2).svg::CompressedTexture2D::906893467077446440::1717400656::1718091271::1::::<><>::
+保存.svg::CompressedTexture2D::1218428608628547948::1717400590::1718091271::1::::<><>::
+加2.png::CompressedTexture2D::2345734163832288592::1710923210::1718091271::1::::<><>::
+加.png::CompressedTexture2D::3195718095482131648::1710922686::1718091271::1::::<><>::
+卡片列表.png::CompressedTexture2D::7404655641132234313::1716972426::1718091272::1::::<><>::
+卡片形式.png::CompressedTexture2D::6943029455778632389::1710929624::1718091272::1::::<><>::
+反馈选中.png::CompressedTexture2D::286260690775379520::1716972946::1718091272::1::::<><>::
+发送1.png::CompressedTexture2D::986718178256880446::1710924754::1718091272::1::::<><>::
+发送.png::CompressedTexture2D::1191647819492052617::1710924626::1718091272::1::::<><>::
+取消.png::CompressedTexture2D::4517217564488526390::1710929270::1718091272::1::::<><>::
+图片.png::CompressedTexture2D::4180978084822449462::1710924204::1718091272::1::::<><>::
+圆形 (1).svg::CompressedTexture2D::1363386030249531210::1717578124::1718091272::1::::<><>::
+字体.png::CompressedTexture2D::3553115696328251529::1710924450::1718091272::1::::<><>::
+屏幕截图 2024-06-02 132500.png::CompressedTexture2D::2221059858257991334::1717305934::1718091272::1::::<><>::
+收起.png::CompressedTexture2D::2717126321412816757::1710465390::1718091272::1::::<><>::
+收起.svg::CompressedTexture2D::2325705490054060370::1717677648::1718091272::1::::<><>::
+文件.png::CompressedTexture2D::2656990197208843439::1710924330::1718091272::1::::<><>::
+添加 (1).svg::CompressedTexture2D::1964129389233262255::1717407920::1718091272::1::::<><>::
+添加.svg::CompressedTexture2D::1016044250864827062::1717407920::1718091271::1::::<><>::
+清单选中.png::CompressedTexture2D::4424303633320266910::1716972798::1718091271::1::::<><>::
+登录界面背景.jpg::CompressedTexture2D::4346110161487081986::1710323936::1718091273::1::::<><>::
+设置选中.png::CompressedTexture2D::1707936916232093217::1716972818::1718091271::1::::<><>::
+链接.png::CompressedTexture2D::1523645181992471350::1710924380::1718091271::1::::<><>::
+链接.svg::CompressedTexture2D::8140794287656329207::1717398670::1718091271::1::::<><>::
+颜色选择-01.svg::CompressedTexture2D::6073922899015751204::1717580348::1718091271::1::::<><>::
+首页2.png::CompressedTexture2D::833159141224172855::1716971862::1718091271::1::::<><>::
+首页选中.png::CompressedTexture2D::2364124875223747495::1716973010::1718091271::1::::<><>::
 ::res://assets/::1717387472
-::res://assets/fonts/::1717387200
-SourceHanSerif-VF.otf.ttc::FontFile::3517723525416533612::1717386945::1718076388::1::::<><>::
-SourceHanSerif-VF.ttf.ttc::FontFile::1073584112995018871::1717386999::1718076388::1::::<><>::
-::res://assets/icons/::1718076310
-hash井号.png::CompressedTexture2D::2816373114730921544::1717469614::1718076389::1::::<><>::
-trashcan回收站.png::CompressedTexture2D::852051168607752377::1710923639::1718076389::1::::<><>::
-trashcan回收站yellow.png::CompressedTexture2D::6964666217857930895::1711533136::1718076389::1::::<><>::
-三个点.png::CompressedTexture2D::9020688620854233151::1710925313::1718076389::1::::<><>::
-井号.png::CompressedTexture2D::5225871029373326201::1710924258::1718076389::1::::<><>::
-保存.png::CompressedTexture2D::2979200535283606255::1717402837::1718076389::1::::<><>::
-加2.png::CompressedTexture2D::4092433347176060080::1710923209::1718076389::1::::<><>::
-叉叉.svg::CompressedTexture2D::8371209925822863002::1717819550::1718076389::1::::<><>::
-叉号.svg::CompressedTexture2D::5063495345063792309::1717662558::1718076389::1::::<><>::
-取消框.png::CompressedTexture2D::1758819886035307695::1717468058::1718076389::1::::<><>::
-引用链接.png::CompressedTexture2D::2918360952017108737::1717741558::1718076389::1::::<><>::
-文件.png::CompressedTexture2D::1354043372948282827::1710924328::1718076389::1::::<><>::
-被引用链接.png::CompressedTexture2D::4885937415626156707::1717591693::1718076389::1::::<><>::
-链接.png::CompressedTexture2D::5954552410356335145::1710924379::1718076389::1::::<><>::
+::res://assets/fonts/::1718091271
+SourceHanSerif-VF.otf.ttc::FontFile::3517723525416533612::1717386945::1718091271::1::::<><>::
+SourceHanSerif-VF.ttf.ttc::FontFile::1073584112995018871::1717386999::1718091271::1::::<><>::
+::res://assets/icons/::1718091271
+hash井号.png::CompressedTexture2D::2816373114730921544::1717469614::1718091271::1::::<><>::
+trashcan回收站.png::CompressedTexture2D::852051168607752377::1710923639::1718091271::1::::<><>::
+trashcan回收站yellow.png::CompressedTexture2D::6964666217857930895::1711533136::1718091271::1::::<><>::
+三个点.png::CompressedTexture2D::9020688620854233151::1710925313::1718091271::1::::<><>::
+井号.png::CompressedTexture2D::5225871029373326201::1710924258::1718091271::1::::<><>::
+保存.png::CompressedTexture2D::2979200535283606255::1717402837::1718091271::1::::<><>::
+加2.png::CompressedTexture2D::4092433347176060080::1710923209::1718091271::1::::<><>::
+叉叉.svg::CompressedTexture2D::8371209925822863002::1717819550::1718091271::1::::<><>::
+叉号.svg::CompressedTexture2D::5063495345063792309::1717662558::1718091271::1::::<><>::
+取消框.png::CompressedTexture2D::1758819886035307695::1717468058::1718091271::1::::<><>::
+引用链接.png::CompressedTexture2D::2918360952017108737::1717741558::1718091271::1::::<><>::
+文件.png::CompressedTexture2D::1354043372948282827::1710924328::1718091271::1::::<><>::
+被引用链接.png::CompressedTexture2D::4885937415626156707::1717591693::1718091271::1::::<><>::
+链接.png::CompressedTexture2D::5954552410356335145::1710924379::1718091271::1::::<><>::
 ::res://assets/imgs/::1717384965
-::res://assets/theme/::1718075952
-default.tres::Theme::4878183307399461515::1718075952::0::1::::<><>::uid://bqeanl0rvmlbo::::res://assets/fonts/SourceHanSerif-VF.otf.ttc
+::res://assets/theme/::1718107365
+default.tres::Theme::4878183307399461515::1718107365::0::1::::<><>::uid://bqeanl0rvmlbo::::res://assets/fonts/SourceHanSerif-VF.otf.ttc
 inspiration_button.tres::StyleBoxFlat::6227105059803514412::1718075952::0::1::::<><>::
-::res://components/::1718076246
+::res://components/::1718090728
 link_out_stroll_container.gd::GDScript::-1::1718070889::0::1::::<>VBoxContainer<>::
-link_out_stroll_container.tscn::PackedScene::6487295658119967489::1718076246::0::1::::<><>::res://components/link_out_stroll_container.gd<>uid://cbra74d4qris6::::res://assets/theme/default.tres<>uid://bykn1q5iawir5::::res://assets/icons/加2.png<>uid://dbfg25aib713c::::res://pages/inspiration/PopUpLink.tscn
+link_out_stroll_container.tscn::PackedScene::6487295658119967489::1718090728::0::1::::<><>::res://components/link_out_stroll_container.gd<>uid://cbra74d4qris6::::res://assets/theme/default.tres<>uid://bykn1q5iawir5::::res://assets/icons/加2.png<>uid://dbfg25aib713c::::res://pages/inspiration/PopUpLink.tscn
 related_file_components_container.gd::GDScript::-1::1717735627::0::1::::<>HBoxContainer<>::
 related_file_components_container.tscn::PackedScene::8180164221563402482::1717771448::0::1::::<><>::uid://cbra74d4qris6::::res://assets/theme/default.tres<>res://components/related_file_components_container.gd<>uid://cuyprmgnxxsp5::::res://assets/theme/inspiration_button.tres
 ::res://components/calendar/::1718021665
@@ -55,22 +108,58 @@ calendar_day.gd::GDScript::-1::1718001283::0::1::::<>Panel<>::
 calendar_day.tscn::PackedScene::758123797649427038::1718021665::0::1::::<><>::uid://cbra74d4qris6::::res://assets/theme/default.tres<>res://components/calendar/calendar_day.gd
 calendar_month.gd::GDScript::-1::1718002179::0::1::::<>Control<>::
 calendar_month.tscn::PackedScene::3336808662067196634::1718021665::0::1::::<><>::uid://cbra74d4qris6::::res://assets/theme/default.tres<>res://components/calendar/calendar_month.gd
-::res://global/::1718071872
-global_variables.gd::GDScript::-1::1718028811::0::1::::<>Node<>::
-signalbus.gd::GDScript::-1::1718071872::0::1::::<>Node<>::
-::res://pages/::1718024153
-::res://pages/inspiration/::1718076247
-inspiration.gd::GDScript::-1::1718023957::0::1::::<>Control<>::
-inspiration.tscn::PackedScene::1411824060218034193::1718076247::0::1::::<><>::res://pages/inspiration/inspiration.gd<>uid://cbra74d4qris6::::res://assets/theme/default.tres<>uid://cgpplkgp4ywqr::::res://assets/icons/井号.png<>res://pages/inspiration/inspiration_memo_resource.gd<>uid://bykn1q5iawir5::::res://assets/icons/加2.png<>uid://tj55qm8vhwy2::::res://assets/icons/文件.png<>uid://bgejivkkk3417::::res://assets/icons/hash井号.png<>uid://cq3ouxd1nyihl::::res://assets/icons/链接.png<>uid://bipe86fxjm208::::res://assets/icons/保存.png<>uid://me0fm7jrv4dh::::res://assets/icons/trashcan回收站.png<>uid://0b8rhtxj0cff::::res://assets/icons/取消框.png<>uid://bqeanl0rvmlbo::::res://assets/fonts/SourceHanSerif-VF.otf.ttc<>uid://bhtw8jfbip3bx::::res://assets/icons/引用链接.png
+::res://data/::1718091103
+character.txt::TextFile::-1::1718111981::0::1::::<><>::
+content.txt::TextFile::-1::1718108535::0::1::::<><>::
+::res://global/::1718114777
+Globalvariable.gd::GDScript::-1::1718112898::0::1::::<>Node<>::
+global_util.gd::GDScript::-1::1717502848::0::1::::GlobalUtil<>Node<>::
+global_variables.gd::GDScript::-1::1718097754::0::1::::<>Node<>::
+signalbus.gd::GDScript::-1::1718114777::0::1::::<>Node<>::
+::res://pages/::1718101636
+::res://pages/character_card/::1718115452
+character_card.gd::GDScript::-1::1718115429::0::1::::<>Control<>::
+character_card.tscn::PackedScene::4188454490450325157::1718115452::0::1::::<><>::res://pages/character_card/character_card.gd<>uid://cmoj7ex21pgtg::::res://asset/fonts/思源宋体 CN-Medium.otf<>uid://6v5sci0wa0ra::::res://asset/UI/屏幕截图 2024-06-02 132500.png<>uid://oqgdoa1pvi67::::res://asset/UI/添加.svg<>uid://cbra74d4qris6::::res://assets/theme/default.tres<>uid://bykn1q5iawir5::::res://assets/icons/加2.png<>uid://28o6oh7nug8f::::res://asset/UI/添加 (1).svg<>uid://bgejivkkk3417::::res://assets/icons/hash井号.png<>uid://bqeanl0rvmlbo::::res://assets/fonts/SourceHanSerif-VF.otf.ttc<>uid://me0fm7jrv4dh::::res://assets/icons/trashcan回收站.png<>uid://c820bgbncshpb::::res://pages/character_card/scroll_container.tscn
+entity_sub_character.gd::GDScript::-1::1718101613::0::1::::CharacterEntity<>Resource<>::
+graph.tscn::PackedScene::2379865779076926324::1718115452::0::1::::<><>::uid://b6c3856kdvd71::::res://asset/themes/graph.tres<>uid://bggg8eaejujge::::res://asset/themes/label.tres
+scroll_container.gd::GDScript::-1::1717472814::0::1::::<>ScrollContainer<>::
+scroll_container.tscn::PackedScene::7146331434692905771::1717724656::0::1::::<><>::uid://bbqr16fmhfvtm::::res://pages/character_card/sub_character.tscn<>res://pages/character_card/scroll_container.gd
+sub_character.gd::GDScript::-1::1718115367::0::1::::<>Control<>::
+sub_character.tscn::PackedScene::2490719827417324478::1718115452::0::1::::<><>::uid://b2wka2xsh4iua::::res://asset/themes/label_theme.tres<>res://pages/character_card/sub_character.gd<>res://pages/character_card/entity_sub_character.gd<>uid://bxofxiw811wpf::::res://asset/themes/optionbutton.tres<>uid://binru6c1n3q16::::res://asset/themes/line_edit.tres<>uid://b0tkdlr8sb5bu::::res://asset/UI/图片.png<>uid://cu8chgtksg6ni::::res://asset/UI/trashcan回收站yellow.png<>uid://cxwhqg2n151ym::::res://asset/UI/trashcan回收站.png<>uid://huy0ohyn1kwp::::res://asset/themes/textedit.tres<>uid://bqeanl0rvmlbo::::res://assets/fonts/SourceHanSerif-VF.otf.ttc<>uid://cbra74d4qris6::::res://assets/theme/default.tres<>uid://cgpplkgp4ywqr::::res://assets/icons/井号.png<>uid://3i2b1appv7r0::::res://asset/UI/保存 (1).svg<>uid://m6knx00c13g3::::res://asset/UI/保存 (2).svg<>uid://bggg8eaejujge::::res://asset/themes/label.tres
+章节 (1).svg::CompressedTexture2D::5243908397598538081::1717663094::1718091271::1::::<><>::
+::res://pages/content/::1718115452
+content.gd::GDScript::-1::1718093657::0::1::::<>Control<>::
+content.tscn::PackedScene::2556975525169192453::1718115452::0::1::::<><>::uid://bggg8eaejujge::::res://asset/themes/label.tres<>res://pages/content/content.gd<>uid://cbra74d4qris6::::res://assets/theme/default.tres<>uid://cmoj7ex21pgtg::::res://asset/fonts/思源宋体 CN-Medium.otf<>uid://bkoimtet8l38q::::res://asset/themes/tree_themes.tres<>uid://cu8chgtksg6ni::::res://asset/UI/trashcan回收站yellow.png<>uid://bqeanl0rvmlbo::::res://assets/fonts/SourceHanSerif-VF.otf.ttc<>uid://3i2b1appv7r0::::res://asset/UI/保存 (1).svg<>uid://m6knx00c13g3::::res://asset/UI/保存 (2).svg<>uid://cxwhqg2n151ym::::res://asset/UI/trashcan回收站.png
+::res://pages/graph/::1718115452
+character_graph.gd::GDScript::-1::1717582512::0::1::::<>Control<>::
+character_graph.tscn::PackedScene::2662373827474280408::1718030928::0::1::::<><>::uid://cf2mfbeaf8ikm::::res://pages/graph/graph_edit.tscn
+graph_edit.gd::GDScript::-1::1718113636::0::1::::<>GraphEdit<>::
+graph_edit.tscn::PackedScene::5180261376529256152::1718115452::0::1::::<><>::res://pages/graph/graph_edit.gd
+graph_node.gd::GDScript::-1::1718030928::0::1::::<>GraphNode<>::
+graph_node.tscn::PackedScene::2377163999977948739::1718115452::0::1::::<><>::uid://b6c3856kdvd71::::res://asset/themes/graph.tres<>uid://bggg8eaejujge::::res://asset/themes/label.tres<>res://pages/graph/graph_node.gd
+::res://pages/home/::1718115452
+book.gd::GDScript::-1::1717945674::0::1::::<>VBoxContainer<>::
+book.tscn::PackedScene::6255414679868145017::1718115452::0::1::::<><>::uid://lx2npmx8ioaa::::res://asset/UI/书本.png<>uid://cbra74d4qris6::::res://assets/theme/default.tres<>uid://binru6c1n3q16::::res://asset/themes/line_edit.tres
+home.gd::GDScript::-1::1718030928::0::1::::<>Control<>::
+home.tscn::PackedScene::9061640350728631846::1718115452::0::1::::<><>::res://pages/home/home.gd<>uid://bggg8eaejujge::::res://asset/themes/label.tres<>uid://oqgdoa1pvi67::::res://asset/UI/添加.svg<>uid://28o6oh7nug8f::::res://asset/UI/添加 (1).svg
+::res://pages/inspiration/::1718115452
+inspiration.gd::GDScript::-1::1718114039::0::1::::<>Control<>::
+inspiration.tscn::PackedScene::1411824060218034193::1718115452::0::1::::<><>::res://pages/inspiration/inspiration.gd<>uid://cbra74d4qris6::::res://assets/theme/default.tres<>uid://cgpplkgp4ywqr::::res://assets/icons/井号.png<>res://pages/inspiration/inspiration_memo_resource.gd<>uid://bykn1q5iawir5::::res://assets/icons/加2.png<>uid://tj55qm8vhwy2::::res://assets/icons/文件.png<>uid://bgejivkkk3417::::res://assets/icons/hash井号.png<>uid://cq3ouxd1nyihl::::res://assets/icons/链接.png<>uid://bipe86fxjm208::::res://assets/icons/保存.png<>uid://me0fm7jrv4dh::::res://assets/icons/trashcan回收站.png<>uid://0b8rhtxj0cff::::res://assets/icons/取消框.png<>uid://bqeanl0rvmlbo::::res://assets/fonts/SourceHanSerif-VF.otf.ttc<>uid://bhtw8jfbip3bx::::res://assets/icons/引用链接.png
 inspiration_memo_resource.gd::GDScript::-1::1717999358::0::1::::MemoEntity<>Resource<>::
-inspiration_tag_resource.gd::GDScript::-1::1717491955::0::1::::TagEntity<>Resource<>::
+inspiration_tag_resource.gd::GDScript::-1::1718101437::0::1::::TagEntity<>Resource<>::
 memo_show_panel_container.gd::GDScript::-1::1718075952::0::1::::<>PanelContainer<>::
-memo_show_panel_container.tscn::PackedScene::3764607219349497461::1717857822::0::1::::<><>::uid://cbra74d4qris6::::res://assets/theme/default.tres<>uid://bqeanl0rvmlbo::::res://assets/fonts/SourceHanSerif-VF.otf.ttc<>res://pages/inspiration/memo_show_panel_container.gd<>res://pages/inspiration/inspiration_memo_resource.gd<>uid://d1rxony85lv5x::::res://assets/icons/三个点.png<>uid://bhtw8jfbip3bx::::res://assets/icons/引用链接.png<>uid://cbu1w70tjhaut::::res://assets/icons/被引用链接.png
+memo_show_panel_container.tscn::PackedScene::3764607219349497461::1718115452::0::1::::<><>::uid://cbra74d4qris6::::res://assets/theme/default.tres<>uid://bqeanl0rvmlbo::::res://assets/fonts/SourceHanSerif-VF.otf.ttc<>res://pages/inspiration/memo_show_panel_container.gd<>res://pages/inspiration/inspiration_memo_resource.gd<>uid://d1rxony85lv5x::::res://assets/icons/三个点.png<>uid://bhtw8jfbip3bx::::res://assets/icons/引用链接.png<>uid://cbu1w70tjhaut::::res://assets/icons/被引用链接.png
 PopUpLink.gd::GDScript::-1::1717848721::0::1::::<>Control<>::
 PopUpLink.tscn::PackedScene::7240186877946278194::1717999445::0::1::::<><>::res://pages/inspiration/PopUpLink.gd<>uid://cbra74d4qris6::::res://assets/theme/default.tres<>uid://drjcusyqsfmt3::::res://assets/icons/叉叉.svg
-::res://pages/scene_list/::1718076263
-scene_list.gd::GDScript::-1::1718074728::0::1::::<>Control<>::
-scene_list.tscn::PackedScene::8590583561579259909::1718076263::0::1::::<><>::uid://cbra74d4qris6::::res://assets/theme/default.tres<>res://pages/scene_list/scene_list.gd<>uid://bqeanl0rvmlbo::::res://assets/fonts/SourceHanSerif-VF.otf.ttc<>res://addon/table_container/table_container.gd<>uid://c6h0bgr52ifal::::res://assets/icons/trashcan回收站yellow.png<>uid://bykn1q5iawir5::::res://assets/icons/加2.png<>uid://cq3ouxd1nyihl::::res://assets/icons/链接.png<>uid://bhtw8jfbip3bx::::res://assets/icons/引用链接.png
-scene_list_container.gd::GDScript::-1::1718076147::0::1::::<>HBoxContainer<>::
-scene_list_container.tscn::PackedScene::6626410556825236043::1718076247::0::1::::<><>::uid://cbra74d4qris6::::res://assets/theme/default.tres<>res://pages/scene_list/scene_list_container.gd<>uid://bqeanl0rvmlbo::::res://assets/fonts/SourceHanSerif-VF.otf.ttc<>uid://bhtw8jfbip3bx::::res://assets/icons/引用链接.png
+::res://pages/main/::1718115452
+main.gd::GDScript::-1::1718091739::0::1::::<>Control<>::
+main.tscn::PackedScene::1952117574784155956::1718115452::0::1::::<><>::res://pages/main/main.gd<>uid://b7ttukf0e7bxk::::res://asset/UI/knitting.png<>uid://60pqlkcutjgj::::res://asset/fonts/PoiretOne-Regular.ttf<>uid://l4uak1x4oqkd::::res://asset/UI/首页2.png<>uid://cmoj7ex21pgtg::::res://asset/fonts/思源宋体 CN-Medium.otf<>uid://8xg15y67cykd::::res://asset/UI/首页选中.png<>uid://ddq4ujv2u1cxd::::res://asset/UI/卡片列表.png<>uid://b4bfvtoduj1nu::::res://asset/UI/清单选中.png<>uid://ecww3su4pv2o::::res://asset/UI/反馈选中.png<>uid://beygw5uxeru5b::::res://asset/UI/收起.png
+::res://pages/register/::1718115452
+register.gd::GDScript::-1::1718030928::0::1::::<>Control<>::
+register.tscn::PackedScene::2289999051266594848::1718115452::0::1::::<><>::uid://b26j2gdbay1hm::::res://asset/UI/登录界面背景.jpg<>res://pages/register/register.gd<>uid://b7ttukf0e7bxk::::res://asset/UI/knitting.png<>uid://60pqlkcutjgj::::res://asset/fonts/PoiretOne-Regular.ttf<>uid://cmoj7ex21pgtg::::res://asset/fonts/思源宋体 CN-Medium.otf<>uid://binru6c1n3q16::::res://asset/themes/line_edit.tres<>uid://iojglv7pkeld::::res://asset/themes/register.tres<>uid://bggg8eaejujge::::res://asset/themes/label.tres
+::res://pages/scene_list/::1718091061
+scene_list.gd::GDScript::-1::1718078714::0::1::::<>Control<>::
+scene_list.tscn::PackedScene::8590583561579259909::1718091061::0::1::::<><>::uid://cbra74d4qris6::::res://assets/theme/default.tres<>res://pages/scene_list/scene_list.gd<>uid://bqeanl0rvmlbo::::res://assets/fonts/SourceHanSerif-VF.otf.ttc<>res://addon/table_container/table_container.gd<>uid://c6h0bgr52ifal::::res://assets/icons/trashcan回收站yellow.png<>uid://bykn1q5iawir5::::res://assets/icons/加2.png<>uid://cq3ouxd1nyihl::::res://assets/icons/链接.png<>uid://bhtw8jfbip3bx::::res://assets/icons/引用链接.png
+scene_list_container.gd::GDScript::-1::1718078688::0::1::::<>HBoxContainer<>::
+scene_list_container.tscn::PackedScene::6626410556825236043::1718090728::0::1::::<><>::uid://cbra74d4qris6::::res://assets/theme/default.tres<>res://pages/scene_list/scene_list_container.gd<>uid://bqeanl0rvmlbo::::res://assets/fonts/SourceHanSerif-VF.otf.ttc<>uid://bhtw8jfbip3bx::::res://assets/icons/引用链接.png
 scene_list_resource.gd::GDScript::-1::1718028132::0::1::::SceneEntity<>Resource<>::

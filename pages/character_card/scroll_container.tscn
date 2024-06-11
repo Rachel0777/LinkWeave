@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c820bgbncshpb"]
+
+[ext_resource type="PackedScene" uid="uid://bbqr16fmhfvtm" path="res://pages/character_card/sub_character.tscn" id="1_auc58"]
+[ext_resource type="Script" path="res://pages/character_card/scroll_container.gd" id="1_etv67"]
+
+[node name="ScrollContainer" type="ScrollContainer"]
+custom_minimum_size = Vector2(420, 900)
+script = ExtResource("1_etv67")
+
+[node name="PanelContainer2" parent="." instance=ExtResource("1_auc58")]
+custom_minimum_size = Vector2(400, 900)
+layout_mode = 2
+horizontal_scroll_mode = 0

@@ -10,3 +10,5 @@ class_name TagEntity
 @export var parent_id:String
 # tag的子类
 @export var children_id:Array[String]
+# tag的颜色
+@export var color:Color

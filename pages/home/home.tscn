@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2dr5l55bsgug"]
+
+[ext_resource type="Script" path="res://pages/home/home.gd" id="1_o72fa"]
+[ext_resource type="Theme" uid="uid://bggg8eaejujge" path="res://asset/themes/label.tres" id="2_42hka"]
+[ext_resource type="Texture2D" uid="uid://oqgdoa1pvi67" path="res://asset/UI/添加.svg" id="3_rc7e7"]
+[ext_resource type="Texture2D" uid="uid://28o6oh7nug8f" path="res://asset/UI/添加 (1).svg" id="4_rpysc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7nvnd"]
+content_margin_left = 50.0
+content_margin_top = 40.0
+content_margin_right = 50.0
+content_margin_bottom = 40.0
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Home" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o72fa")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7nvnd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_42hka")
+theme_override_colors/font_color = Color(0.882353, 0.831373, 0.741176, 1)
+theme_override_font_sizes/font_size = 40
+text = "   Books"
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="TextureButton" type="TextureButton" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture_normal = ExtResource("3_rc7e7")
+texture_pressed = ExtResource("4_rpysc")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer2/TextureButton" to="." method="_on_texture_button_pressed"]

@@ -80,7 +80,7 @@ corner_radius_bottom_left = 10
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_csf4b"]
 bg_color = Color(0.933333, 0.952941, 0.996078, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxhb0"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sth6a"]
 bg_color = Color(0.933333, 0.952941, 0.996078, 1)
 border_width_left = 1
 border_width_top = 1
@@ -88,7 +88,7 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.376471, 0.541176, 0.968627, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sth6a"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxhb0"]
 bg_color = Color(0.933333, 0.952941, 0.996078, 1)
 border_width_left = 1
 border_width_top = 1
@@ -399,49 +399,41 @@ theme_override_constants/separation = 5
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="tag_add_button_top" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_tag_container"]
+[node name="tag_add_button_top" type="MenuButton" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_tag_container"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+theme = ExtResource("1_xad1q")
 theme_override_colors/font_color = Color(0.376471, 0.541176, 0.968627, 1)
 theme_override_colors/font_pressed_color = Color(0.376471, 0.541176, 0.968627, 1)
 theme_override_colors/font_hover_color = Color(0.376471, 0.541176, 0.968627, 1)
 theme_override_colors/font_focus_color = Color(0.376471, 0.541176, 0.968627, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.376471, 0.541176, 0.968627, 1)
 theme_override_fonts/font = ExtResource("6_ab4m2")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_csf4b")
-theme_override_styles/hover = SubResource("StyleBoxFlat_sxhb0")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_sth6a")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sxhb0")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_oko0v")
 theme_override_styles/focus = SubResource("StyleBoxFlat_v5fl6")
 text = "#"
-
-[node name="tag_change_popup_menu" type="PopupMenu" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_tag_container/tag_add_button_top"]
-unique_name_in_owner = true
-transparent_bg = true
-position = Vector2i(454, 220)
-theme = ExtResource("1_xad1q")
 item_count = 2
-item_0/text = "修改"
-item_0/id = 0
-item_1/text = "删除"
-item_1/id = 1
+popup/item_0/text = "修改"
+popup/item_0/id = 0
+popup/item_1/text = "删除"
+popup/item_1/id = 1
 
-[node name="popup_menu_tag_tree" type="PopupPanel" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_tag_container"]
+[node name="popup_menu_tag_tree" type="PanelContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
-transparent_bg = true
-position = Vector2i(454, 210)
-size = Vector2i(250, 200)
+visible = false
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 0
 theme = ExtResource("1_xad1q")
 theme_override_styles/panel = SubResource("StyleBoxFlat_1rqp7")
 
-[node name="popup_tag_tree" type="Tree" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_tag_container/popup_menu_tag_tree"]
+[node name="popup_tag_tree" type="Tree" parent="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/popup_menu_tag_tree"]
 unique_name_in_owner = true
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 249.0
-offset_bottom = 199.0
+layout_mode = 2
 theme_override_colors/font_color = Color(0.631373, 0.631373, 0.631373, 1)
 theme_override_colors/font_selected_color = Color(1, 0.843137, 0.25098, 1)
 theme_override_fonts/title_button_font = ExtResource("6_ab4m2")
@@ -661,8 +653,7 @@ size_flags_vertical = 3
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/tag_add_button" to="." method="_on_tag_add_button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/tag_del_button" to="." method="_on_tag_del_button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_tag_container/tag_add_button_top" to="." method="_on_tag_add_button_top_pressed"]
-[connection signal="id_pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_tag_container/tag_add_button_top/tag_change_popup_menu" to="." method="_on_tag_change_popup_menu_id_pressed"]
-[connection signal="item_selected" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/inspiration_tag_container/popup_menu_tag_tree/popup_tag_tree" to="." method="_on_popup_tag_tree_item_selected"]
+[connection signal="item_selected" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/popup_menu_tag_tree/popup_tag_tree" to="." method="_on_popup_tag_tree_item_selected"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/inspiration_tag_button" to="." method="_on_inspiration_tag_button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/inspiration_link_button" to="." method="_on_inspiration_link_button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer/inspiration_file_button" to="." method="_on_inspiration_file_button_pressed"]

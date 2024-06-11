@@ -15,7 +15,7 @@ extends Control
 @onready var popup_menu_tag = %popup_menu_tag_tree
 @onready var popup_tree = %popup_tag_tree
 @onready var button_tag = %tag_add_button_top
-@onready var popup_menu = %tag_change_popup_menu
+#@onready var popup_menu = %tag_change_popup_menu
 # 这个主要是存储的
 @onready var memoEdit = %memo
 # memo添加失败，显示这个label
@@ -34,7 +34,6 @@ extends Control
 @onready var file_list: Array[String]
 # 通过这个button存储一下uuid，实际上是标注一下这个memoEn是否已经存在
 @onready var memo_add_btn = %inspiration_add_button
-# 获得日期
 
 # ==链接部分==
 # 首先是选择链接后展示
@@ -66,6 +65,8 @@ func _ready():
 	Signalbus.inspiration_memo_deled.connect(_on_memo_deled)
 	# 左上角label显示
 	_set_label_num()
+	_apply_script_to_menubuttons(self)
+	init_menu_btn()
 	# ==下面是链接有关的==
 	Signalbus.inspiration_link_add.connect(_on_link_added)
 	Signalbus.inspiration_link_deled.connect(_on_link_deled)
@@ -147,6 +148,7 @@ func _on_inspiration_tag_added(tagEn:TagEntity):
 	tagEdit.clear()
 	reconstruct_tree(treeWidget)
 	selectTagBtn.set_meta('tag_id','NULL')
+	_set_label_num()
 
 # 如果按了删除按钮，删除这个节点以及其子节点
 func _on_tag_del_button_pressed():
@@ -206,13 +208,13 @@ func _on_popup_tag_tree_item_selected():
 		button_tag.text = '# '+ GlobalVariables.get_tag_full_name(tag_id)
 		popup_menu_tag.hide()
 	
-# 修改或者删除这个tag
-func _on_tag_add_button_top_pressed():
-	if not popup_menu.visible:
-		popup_menu.show()
+## 修改或者删除这个tag
+#func _on_tag_add_button_top_pressed():
+	#if not popup_menu.visible:
+		#popup_menu.show()
 
 # 修改灵感录入时的标签，0是修改，1是删除
-func _on_tag_change_popup_menu_id_pressed(id):
+func _on_menu_item_clicked(id):
 	# 删除
 	if id==1:
 		clear_inspiration_tag()
@@ -220,7 +222,8 @@ func _on_tag_change_popup_menu_id_pressed(id):
 	elif id==0:
 		button_tag.set_meta('tag_id','NULL')
 		button_tag.text = '#'
-		if not popup_menu.visible:
+		if not popup_menu_tag.visible:
+			reconstruct_tree(popup_tree)
 			popup_menu_tag.show()
 		
 # 清除灵感上面添加的tag
@@ -256,7 +259,6 @@ func get_memo_data()->MemoEntity:
 		memoEn.id = memo_id
 	memo_add_btn.set_meta('memo_id','NULL')
 	memoEn.content = memoEdit.text
-	# 先挖一个坑
 	memoEn.book_id = 'NULL'
 	# 之前的tag存到了button_tag里，现在取出
 	memoEn.tag = button_tag.get_meta('tag_id','NULL')
@@ -465,3 +467,23 @@ func show_calendar():
 	clear_memo_container(calendar_container)
 	var calendar_month = calendar_scene.instantiate()
 	calendar_container.add_child(calendar_month)
+# ==标签==
+# 做一些关于menu_button的初始化
+func init_menu_btn():
+	var popMenu = button_tag.get_popup()
+	popMenu.index_pressed.connect(_on_menu_item_clicked)
+		
+# 下面处理MenuButton的，使其背景透明的
+func _apply_script_to_menubuttons(node):
+	for child in node.get_children():
+		if child is MenuButton:
+			var popup_menu = child.get_popup()
+			if popup_menu:
+				_on_popup_about_to_show(popup_menu)
+		else:
+			_apply_script_to_menubuttons(child)
+func _on_popup_about_to_show(popup_menu):
+	if popup_menu:
+		var viewport = popup_menu.get_viewport()
+		if viewport:
+			viewport.transparent_bg = true

@@ -66,20 +66,26 @@ theme_override_fonts/font = ExtResource("2_dbg0f")
 theme_override_font_sizes/font_size = 40
 text = "List of Scenes"
 
-[node name="TableContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="TableContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 5
 script = ExtResource("3_ajfh4")
 separation_horizontal = 10
 separation_vertical = 5
 
-[node name="head_container" type="HBoxContainer" parent="PanelContainer/VBoxContainer/TableContainer"]
+[node name="head_container" type="HBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label5" type="Label" parent="PanelContainer/VBoxContainer/TableContainer/head_container"]
+[node name="Label5" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/head_container"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -87,7 +93,7 @@ theme = ExtResource("1_gqkti")
 theme_override_font_sizes/font_size = 40
 text = "行"
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/TableContainer/head_container"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/head_container"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -95,40 +101,40 @@ theme = ExtResource("1_gqkti")
 theme_override_font_sizes/font_size = 40
 text = "章节"
 
-[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/TableContainer/head_container"]
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/head_container"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 40
 text = "地点"
 
-[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/TableContainer/head_container"]
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/head_container"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 40
 text = "时间"
 
-[node name="Label4" type="Label" parent="PanelContainer/VBoxContainer/TableContainer/head_container"]
+[node name="Label4" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/head_container"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 40
 text = "事件"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/TableContainer/head_container"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/head_container"]
 custom_minimum_size = Vector2(207, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 
-[node name="Label5" type="Label" parent="PanelContainer/VBoxContainer/TableContainer/head_container/HBoxContainer"]
+[node name="Label5" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/head_container/HBoxContainer"]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 40
 text = "灵感链接"
 
-[node name="scene_link_button" type="Button" parent="PanelContainer/VBoxContainer/TableContainer/head_container/HBoxContainer"]
+[node name="scene_link_button" type="Button" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/head_container/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(43, 43)
 layout_mode = 2
@@ -136,7 +142,7 @@ size_flags_vertical = 4
 tooltip_text = "点击后可以看见所有链接的memo"
 theme = ExtResource("1_gqkti")
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/TableContainer/head_container/HBoxContainer/scene_link_button"]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/head_container/HBoxContainer/scene_link_button"]
 custom_minimum_size = Vector2(43, 43)
 layout_mode = 1
 offset_right = 43.0
@@ -144,29 +150,28 @@ offset_bottom = 43.0
 texture = ExtResource("6_uvj78")
 expand_mode = 1
 
-[node name="add_container" type="HBoxContainer" parent="PanelContainer/VBoxContainer/TableContainer"]
+[node name="add_container" type="HBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="row_column_btn" type="Button" parent="PanelContainer/VBoxContainer/TableContainer/add_container"]
+[node name="row_column_btn" type="Button" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/add_container"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
-tooltip_text = "点击后选择标签"
 theme = ExtResource("1_gqkti")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.976471, 0.862745, 0.360784, 1)
 theme_override_colors/font_hover_color = Color(0.976471, 0.862745, 0.360784, 1)
 theme_override_colors/font_focus_color = Color(0.976471, 0.862745, 0.360784, 1)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 45
 disabled = true
 text = "0"
 
-[node name="chapter" type="TextEdit" parent="PanelContainer/VBoxContainer/TableContainer/add_container"]
+[node name="chapter" type="TextEdit" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/add_container"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
@@ -177,35 +182,11 @@ theme_override_colors/font_placeholder_color = Color(0.686275, 0.686275, 0.68627
 theme_override_fonts/font = ExtResource("2_dbg0f")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_mgdvs")
+theme_override_styles/focus = SubResource("StyleBoxFlat_a1ra4")
 placeholder_text = "输入章节"
+wrap_mode = 1
 
-[node name="place" type="TextEdit" parent="PanelContainer/VBoxContainer/TableContainer/add_container"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_gqkti")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_placeholder_color = Color(0.686275, 0.686275, 0.686275, 1)
-theme_override_fonts/font = ExtResource("2_dbg0f")
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_mgdvs")
-placeholder_text = "输入地点"
-
-[node name="time" type="TextEdit" parent="PanelContainer/VBoxContainer/TableContainer/add_container"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_gqkti")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_placeholder_color = Color(0.686275, 0.686275, 0.686275, 1)
-theme_override_fonts/font = ExtResource("2_dbg0f")
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_mgdvs")
-placeholder_text = "输入时间"
-
-[node name="event" type="TextEdit" parent="PanelContainer/VBoxContainer/TableContainer/add_container"]
+[node name="place" type="TextEdit" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/add_container"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
@@ -220,13 +201,43 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_a1ra4")
 placeholder_text = "输入事件"
 wrap_mode = 1
 
-[node name="scene_linkout_container" type="HBoxContainer" parent="PanelContainer/VBoxContainer/TableContainer/add_container"]
+[node name="time" type="TextEdit" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/add_container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_gqkti")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.686275, 0.686275, 0.686275, 1)
+theme_override_fonts/font = ExtResource("2_dbg0f")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_mgdvs")
+theme_override_styles/focus = SubResource("StyleBoxFlat_a1ra4")
+placeholder_text = "输入事件"
+wrap_mode = 1
+
+[node name="event" type="TextEdit" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/add_container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_gqkti")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.686275, 0.686275, 0.686275, 1)
+theme_override_fonts/font = ExtResource("2_dbg0f")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_mgdvs")
+theme_override_styles/focus = SubResource("StyleBoxFlat_a1ra4")
+placeholder_text = "输入事件"
+wrap_mode = 1
+
+[node name="scene_linkout_container" type="HBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/add_container"]
 custom_minimum_size = Vector2(207, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="link_out_button" type="Button" parent="PanelContainer/VBoxContainer/TableContainer/add_container/scene_linkout_container"]
+[node name="link_out_button" type="Button" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/add_container/scene_linkout_container"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(43, 43)
@@ -235,7 +246,7 @@ size_flags_vertical = 0
 tooltip_text = "点击后可以看见所有链接的memo"
 theme = ExtResource("1_gqkti")
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/TableContainer/add_container/scene_linkout_container/link_out_button"]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/add_container/scene_linkout_container/link_out_button"]
 custom_minimum_size = Vector2(43, 43)
 layout_mode = 1
 offset_right = 43.0
@@ -243,7 +254,7 @@ offset_bottom = 43.0
 texture = ExtResource("6_ylfun")
 expand_mode = 1
 
-[node name="scene_linkout_vboxcontainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TableContainer/add_container/scene_linkout_container"]
+[node name="scene_linkout_vboxcontainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/add_container/scene_linkout_container"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
@@ -300,7 +311,7 @@ grow_vertical = 2
 texture = ExtResource("5_f3p04")
 expand_mode = 1
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/TableContainer/head_container/HBoxContainer/scene_link_button" to="." method="_on_scene_link_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/TableContainer/add_container/scene_linkout_container/link_out_button" to="." method="_on_link_out_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/head_container/HBoxContainer/scene_link_button" to="." method="_on_scene_link_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/ScrollContainer/TableContainer/add_container/scene_linkout_container/link_out_button" to="." method="_on_link_out_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/del_button" to="." method="_on_del_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/add_button" to="." method="_on_add_button_pressed"]

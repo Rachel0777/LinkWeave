@@ -194,3 +194,71 @@ func find_scene_entity_index_by_id(target_id: String) -> int:
 		if sceneEn.id == target_id:
 			return i+1
 	return -1
+
+# == tag对应内容，可以复用 == 
+# 生成tag对应的存储位置
+const CHARACTER_TAG_FILE_PATH = 'user://character_tag.txt'
+var character_tag_config_file = ConfigFile.new()
+# 加载tag文档
+func load_character_tag_file():
+	character_tag_config_file.clear()
+	character_tag_config_file.load(CHARACTER_TAG_FILE_PATH)
+# 保存tag文档
+func save_character_tag_file():
+	character_tag_config_file.save(CHARACTER_TAG_FILE_PATH)
+# 得到所有tag的id
+func get_all_character_tag_keys():
+	load_character_tag_file()
+	return character_tag_config_file.get_section_keys('character_tag')
+func get_character_tag(id:String):
+	return character_tag_config_file.get_value('character_tag',id)
+# 添加tag
+func add_character_tag(tag_data:TagEntity):
+	# 保存这一条数据
+	character_tag_config_file.set_value('character_tag',tag_data.id,tag_data)
+	# 判断是否有父类，如果有更新父类的子类
+	if tag_data.parent_id!='NULL':
+		# 更新父类
+		var parent_data:TagEntity = get_character_tag(tag_data.parent_id)
+		parent_data.children_id.append(tag_data.id)
+		# 覆盖之前父类的数据，从而更新子类
+		character_tag_config_file.set_value('character_tag',tag_data.parent_id,parent_data)
+# 删除tag
+func del_character_tag(tag_data:TagEntity):
+	# 删除父类中的记录，如果有父节点以不做
+	if tag_data.parent_id != 'NULL':
+		character_tag_erase_from_parent(tag_data.id,tag_data.parent_id)
+	# 循环删除
+	del_character_tag_all_children(tag_data)
+# 循环删除
+func del_character_tag_all_children(tag_data:TagEntity):
+	# 首先把自己删除了
+	character_tag_config_file.erase_section_key('character_tag',tag_data.id)
+	# 再去把子类删除了
+	var children_id_list = tag_data.children_id
+	if children_id_list.size()>0:
+		for child_id in children_id_list:
+			var child_data = get_character_tag(child_id)
+			del_character_tag_all_children(child_data)
+# 删除父类中的记录
+func character_tag_erase_from_parent(current_id:String,parent_id):
+	var parent_data:TagEntity = get_character_tag(parent_id)
+	print(parent_data.name)
+	parent_data.children_id.erase(current_id)
+	character_tag_config_file.set_value('character_tag',parent_id,parent_data)
+# 获得这个tag的名字，包括其父类的名字
+func get_tag_full_name_character(tag_id:String):
+	if tag_id == null:
+		pass
+	else:
+		var current_tag = GlobalVariables.get_character_tag(tag_id)
+		var tag_names = []
+		while current_tag != null:
+			tag_names.append(current_tag.name)
+			current_tag = GlobalVariables.get_character_tag(current_tag.parent_id)
+		var tag_name = ""
+		for i in range(tag_names.size() - 1, -1, -1):
+			if i!=0:
+				tag_name += tag_names[i] + "/"
+		tag_name += tag_names[0]
+		return tag_name
